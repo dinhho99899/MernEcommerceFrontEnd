@@ -6,14 +6,15 @@ import { Gallery, Stars, Title, FormSelect, Comments } from '../components'
 import { Link } from 'react-router-dom'
 import { getSingleProductByAdmin } from '../features/products/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { getAllProductReviews } from '../features/reviews/reviewSlice'
 const SingleProduct = () => {
   const dispatch = useDispatch()
   const { productId: id } = useParams()
   useEffect(() => {
     dispatch(getSingleProductByAdmin(id))
+    dispatch(getAllProductReviews(id))
   }, [id])
   const { product } = useSelector((store) => store.products)
-  console.log(product)
   const {
     averageRating,
     category,

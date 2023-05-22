@@ -7,6 +7,7 @@ const FormRow = ({
   labelText,
   type,
   handleChange,
+  placeholder,
 }) => {
   return (
     <Wrapper className={classname}>
@@ -19,6 +20,7 @@ const FormRow = ({
         name={name}
         value={value}
         onChange={handleChange}
+        placeholder={placeholder}
         className='form-row'
       />
     </Wrapper>
@@ -38,9 +40,13 @@ const Wrapper = styled.div`
     border-radius: 0.35rem;
     border: 1px solid var(--grey200);
     font-size: 1rem;
+    background: var(--input-color);
   }
   .form-row:focus {
     border: 1px solid var(--grey200);
+  }
+  .form-row::placeholder {
+    text-transform: capitalize;
   }
 `
 export default FormRow

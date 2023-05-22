@@ -37,9 +37,11 @@ import SmallSidebar from './SmallSidebar'
 import AddToCart from './AddToCart'
 import AmountBtns from './AmountBtns'
 import CartItem from './CartItem'
+import Comment from './Comment'
 export {
   Title,
   CartItem,
+  Comment,
   AddToCart,
   AmountBtns,
   BigSidebar,

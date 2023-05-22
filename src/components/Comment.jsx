@@ -2,24 +2,28 @@ import React from 'react'
 import styled from 'styled-components'
 import avatar from '../assets/images/blog1.png'
 import Stars from './Stars'
-const Comment = () => {
+const Comment = ({ _id: id, rating, title, comment, user: { name } }) => {
   return (
     <Wrapper>
       <div className='header'>
         <img src={avatar} alt='a' className='avatar' />
         <p>
-          <span className='author'>Dinh Ho </span>
+          <span className='author'>{name} </span>
           <span>&#183; 15 Jan 2022</span>
         </p>
-        <Stars extraClass='flex-right' numbers='5' />
+        <Stars extraClass='flex-right' numbers={rating} />
       </div>
       <div className='content'>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et similique
-          aliquam veniam! Explicabo blanditiis sapiente harum incidunt fugit
-          eaque quod sequi quae autem sint qui laudantium, unde nam, praesentium
-          esse!
-        </p>
+        {title.length > 100 ? (
+          <p>{`${title.substring(0, 100)}...`}</p>
+        ) : (
+          <p>{comment}</p>
+        )}
+        {comment.length > 200 ? (
+          <p>{comment.substring(0, 200)}</p>
+        ) : (
+          <p>{comment}</p>
+        )}
       </div>
     </Wrapper>
   )

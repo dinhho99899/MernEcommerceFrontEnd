@@ -13,7 +13,6 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (user, thunkAPI) => {
-    console.log(user)
     try {
       const response = await customFetch.post('/auth/register', user)
       return response.data
@@ -59,6 +58,11 @@ export const logoutUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    logoutDirectly: (state) => {
+      state.user = null
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -86,5 +90,5 @@ const userSlice = createSlice({
       })
   },
 })
-export const {} = userSlice.actions
+export const { logoutDirectly } = userSlice.actions
 export default userSlice.reducer

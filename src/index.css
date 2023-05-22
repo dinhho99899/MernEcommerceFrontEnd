@@ -37,7 +37,9 @@ body {
   --border: 0.5rem;
   --transition: all 0.3s linear;
   --max-width: 1170px;
-  --radius: 0.5rem
+  --radius: 0.5rem;
+  --font: 'Poppins',
+    sans-serif
 }
 
 .light-theme {
@@ -49,7 +51,7 @@ body {
   --text-color-container: var(--grey900);
   --text-color-light: var(--grey500);
   --title-color: var(--grey900);
-  --input-color: var(--grey100);
+  --input-color: var(--white);
   --input-color-white: var(--white);
   --background: var(--white);
   --background-container: #fff;

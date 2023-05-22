@@ -1,12 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-const FormArea = ({ name, labelText }) => {
+const FormArea = ({ name, labelText, value, placeholder, handleChange }) => {
   return (
     <Wrapper>
       <label htmlFor={name} className='form-label'>
         {labelText || name}
       </label>
-      <textarea type='text' className='form-row' />
+      <textarea
+        type='text'
+        className='form-row'
+        value={value}
+        name={name}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
     </Wrapper>
   )
 }
@@ -24,6 +31,12 @@ const Wrapper = styled.div`
     border: 1px solid var(--grey200);
     min-height: 120px;
     font-size: 1.2rem;
+    background: var(--input-color);
+  }
+  .form-row::placeholder {
+    text-transform: capitalize;
+    font-family: var(--font);
+    font-size: 1rem;
   }
 `
 export default FormArea

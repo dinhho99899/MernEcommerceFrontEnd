@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { FaUserAlt } from 'react-icons/fa'
-import { logoutUser } from '../features/users/userSlice'
+import { logoutUser, logoutDirectly } from '../features/users/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 const UserInfo = () => {
@@ -11,6 +11,7 @@ const UserInfo = () => {
   const [isDropDown, setDropDown] = useState(false)
   const handleLogout = () => {
     dispatch(logoutUser())
+    dispatch(logoutDirectly())
   }
   if (!user) {
     return (
