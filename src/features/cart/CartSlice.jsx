@@ -38,6 +38,7 @@ const CartSlice = createSlice({
           price,
           image,
           amount,
+          product: id,
         }
         state.cart = [...state.cart, newItem]
       }
@@ -58,11 +59,31 @@ const CartSlice = createSlice({
       state.total_amount = total_amount
     },
     toggleItemAmount: (state, { payload }) => {
-      console.log(payload)
+      const { value, id } = payload
+      let tempCart = state.cart.map((item) => {
+        if (item.id === id) {
+          let newAmount
+          if (value === 'increase') {
+            newAmount = item.amount + 1
+          }
+          if (value === 'decrease') {
+            newAmount = item.amount - 1
+            if (newAmount < 1) {
+              newAmount = 1
+            }
+          }
+          return { ...item, amount: newAmount }
+        }
+        return item
+      })
+      state.cart = tempCart
     },
     removeItem: (state, { payload }) => {
       let tempCart = state.cart.filter((item) => item.id !== payload.itemId)
       state.cart = tempCart
+    },
+    clearCart: (state) => {
+      state.cart = []
     },
   },
 })
@@ -73,5 +94,6 @@ export const {
   removeItem,
   openCartModal,
   toggleItemAmount,
+  clearCart,
 } = CartSlice.actions
 export default CartSlice.reducer

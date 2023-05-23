@@ -5,6 +5,7 @@ import CartSlice from './features/cart/CartSlice'
 import allJobsSlice from './features/products/allJobsSlice'
 import jobSlice from './features/products/jobSlice'
 import reviewSlice from './features/reviews/reviewSlice'
+import ordersSlice from './features/orders/ordersSlice'
 export const store = configureStore({
   reducer: {
     user: userSlice,
@@ -13,5 +14,6 @@ export const store = configureStore({
     allJobs: allJobsSlice,
     job: jobSlice,
     reviews: reviewSlice,
+    orders: ordersSlice,
   },
 })

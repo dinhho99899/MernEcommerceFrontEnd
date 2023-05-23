@@ -19,9 +19,9 @@ const CartItem = ({ id, amount, name, price, weight }) => {
       <img src={heroimg} alt='cart' className='cart-item-img'></img>
       <div className='info'>
         <p>{name}</p>
-        <p>{price}đ</p>
-        <p>{weight}kg</p>
-        <p>sub total:{formatPrice(price * amount)}đ</p>
+        <p>{formatPrice(price)}đ</p>
+        <p>{weight} kg</p>
+        <p>sub total: {formatPrice(price * amount)}đ</p>
         <AmountBtns
           decreaseAmount={decreaseAmount}
           amount={amount}

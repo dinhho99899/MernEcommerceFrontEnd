@@ -19,6 +19,7 @@ import {
   AddJob,
   ProtectRoute,
   AllUsers,
+  Orders,
 } from './page/Dashboard'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -54,6 +55,7 @@ function App() {
             <Route path='all-products' element={<AllJobs />}></Route>
             <Route path='add-product' element={<AddJob />}></Route>
             <Route path='all-users' element={<AllUsers />}></Route>
+            <Route path='all-orders' element={<Orders />}></Route>
           </Route>
         </Route>
       </Routes>

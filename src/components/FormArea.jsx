@@ -1,19 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
-const FormArea = ({ name, labelText, value, placeholder, handleChange }) => {
+const FormArea = ({
+  name,
+  labelText,
+  value,
+  type,
+  placeholder,
+  handleChange,
+  extraClass,
+}) => {
   return (
-    <Wrapper>
-      <label htmlFor={name} className='form-label'>
-        {labelText || name}
-      </label>
-      <textarea
-        type='text'
-        className='form-row'
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        onChange={handleChange}
-      />
+    <Wrapper className={extraClass}>
+      <div>
+        <label htmlFor={name} className='form-label'>
+          {labelText || name}
+        </label>
+        <textarea
+          type={type}
+          className='form-row'
+          value={value}
+          name={name}
+          placeholder={placeholder}
+          onChange={handleChange}
+        />
+      </div>
     </Wrapper>
   )
 }
@@ -21,6 +31,7 @@ const Wrapper = styled.div`
   margin-bottom: 1rem;
   .form-label {
     font-size: 1rem;
+    text-transform: capitalize;
   }
   .form-row {
     margin-top: 0.5rem;

@@ -22,10 +22,14 @@ const Wrapper = styled.div`
     font-size: 1.4rem;
     justify-content: left;
   }
-  .negative {
+  .negative:hover {
+    color: var(--primary500);
+    cursor: pointer;
   }
 
-  .positive {
+  .positive:hover {
+    color: var(--primary500);
+    cursor: pointer;
   }
   .color {
     color: var(--primary500);

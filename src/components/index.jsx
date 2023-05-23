@@ -1,4 +1,4 @@
-import AboutUs from './Aboutus'
+import AboutUs from './AboutUs'
 import Hero from './Hero'
 import Breadscums from './Breadscums'
 import Cart from './Cart'

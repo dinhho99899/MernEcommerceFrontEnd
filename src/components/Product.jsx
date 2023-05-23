@@ -8,7 +8,7 @@ import { AddToCart } from '../components'
 import { formatPrice } from '../utils/LocalStorage'
 const Product = ({ product = {} }) => {
   const [like, setLike] = useState(false)
-  const { id, category, description, name, price, image, extraclass } = product
+  const { _id, category, description, name, price, image, extraclass } = product
   return (
     <Wrapper className={extraclass}>
       <div className='img-container'>
@@ -21,7 +21,7 @@ const Product = ({ product = {} }) => {
         </div>
         <p>{description}</p>
         <div className='product-footer'>
-          <Link to={`/product/${id}`} className='icon-link'>
+          <Link to={`/product/${_id}`} className='icon-link'>
             <span>See more</span>
             <span className='icon'>
               <AiOutlineArrowRight />

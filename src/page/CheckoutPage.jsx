@@ -1,12 +1,46 @@
 import React from 'react'
 import styled from 'styled-components'
 import { FormRow, FormArea, Title } from '../components'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { CartItem } from '../components'
 import { Link } from 'react-router-dom'
+import { formatPrice } from '../utils/LocalStorage'
+import { handleChange, createOrder } from '../features/orders/ordersSlice'
+import { toast } from 'react-toastify'
 const CheckoutPage = () => {
-  const { cart } = useSelector((store) => store.cart)
-
+  const { cart, total_amount } = useSelector((store) => store.cart)
+  const { name, email, phone, address, note, tax, shippingFee, order } =
+    useSelector((store) => store.orders)
+  const dispatch = useDispatch()
+  const handleInput = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    dispatch(handleChange({ name, value }))
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (cart.length === 0) {
+      toast.error('your cart is empty')
+      return
+    }
+    if (!name || !email || !address || !phone) {
+      toast.error('Please fill out all fields')
+      return
+    }
+    dispatch(
+      createOrder({
+        shippingFee,
+        tax,
+        items: cart,
+        name,
+        email,
+        address,
+        note,
+        phone,
+      })
+    )
+    console.log(name, email, phone, address, note, tax, shippingFee, cart)
+  }
   return (
     <Wrapper>
       <div className='left'>
@@ -17,7 +51,7 @@ const CheckoutPage = () => {
             </div>
             <div className='cart-items'>
               {cart.map((item) => {
-                return <CartItem {...item} />
+                return <CartItem {...item} key={item.id} />
               })}
             </div>
           </div>
@@ -31,37 +65,77 @@ const CheckoutPage = () => {
         )}
       </div>
       <div className='right'>
-        <div className='customer-info'>
+        <form className='customer-info' onSubmit={handleSubmit}>
           <div className='cart-title'>
             <Title title='checkout' />
           </div>
-          <div>
-            <FormRow />
-            <FormRow />
-            <FormRow />
-            <FormRow />
-            <FormArea />
+          <div className='form'>
+            <FormRow
+              name='name'
+              type='text'
+              value={name}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='email'
+              type='text'
+              value={email}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='phone'
+              type='tel'
+              value={phone}
+              handleChange={handleInput}
+              extraClass='c'
+              min='10'
+              max='12'
+            />
+            <FormRow
+              name='address'
+              type='text'
+              value={address}
+              handleChange={handleInput}
+              extraClass='d'
+            />
+            <FormArea
+              name='note'
+              type='text'
+              value={note}
+              handleChange={handleInput}
+              placeholder='Note'
+              extraClass='e'
+            />
           </div>
           <div className='footer'>
             <p className='flex'>
               <span>Subtotal:</span>
-              <span>200000</span>
+              <span>{formatPrice(total_amount)}đ</span>
             </p>
             <p className='flex'>
-              <span>Subtotal:</span>
-              <span>200000</span>
+              <span>Shipping:</span>
+              <span>{formatPrice(shippingFee)}đ</span>
             </p>
             <p className='flex'>
-              <span>Subtotal:</span>
-              <span>200000DD</span>
+              <span>Tax:</span>
+              <span>
+                {formatPrice(
+                  (total_amount + shippingFee) * (Number(tax) / 100)
+                )}
+                đ
+              </span>
             </p>
             <p className='flex'>
               <span>Total:</span>
-              <span className='color'>200000</span>
+              <span className='color'>
+                {formatPrice(total_amount + shippingFee)}đ
+              </span>
             </p>
           </div>
-          <button className='btn block'>Submit</button>
-        </div>
+          <button className='btn block' type='submit'>
+            Submit
+          </button>
+        </form>
       </div>
     </Wrapper>
   )
@@ -71,6 +145,21 @@ const Wrapper = styled.section`
   min-height: calc(100vh - 4rem);
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
+    .form {
+      display: grid;
+      grid-template-areas: 'a b' 'c c' 'd d' 'e e';
+      gap: 0.5rem;
+      row-gap: 0rem;
+    }
+    .c {
+      grid-area: c;
+    }
+    .d {
+      grid-area: d;
+    }
+    .e {
+      grid-area: e;
+    }
   }
   .left {
     padding: 1rem 2rem;
@@ -137,11 +226,28 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
   }
+
   .block {
     margin-top: 0.5rem;
   }
   .no-items {
     margin-bottom: 0.5rem;
+  }
+  .center {
+    width: 100%;
+    height: calc(100vh - 4.5rem);
+    display: grid;
+    place-items: center;
+  }
+  .center h4,
+  p {
+    text-align: center;
+  }
+  .center p {
+    padding: 0.5rem 0;
+  }
+  .margin {
+    text-align: center;
   }
 `
 export default CheckoutPage

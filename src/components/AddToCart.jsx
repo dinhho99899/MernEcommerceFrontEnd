@@ -7,7 +7,7 @@ const AddToCart = ({ product }) => {
   const weightA = [0.5, 1]
   const [amount, setAmount] = useState(1)
   const [weight, setWeight] = useState(weightA[0])
-  const { id, name, price, image } = product
+  const { _id: id, name, price, image } = product
 
   return (
     <span>

@@ -5,7 +5,11 @@ import {
   AiFillWallet,
   AiTwotoneHome,
 } from 'react-icons/ai'
-import { MdPermContactCalendar, MdOutlineQueryStats } from 'react-icons/md'
+import {
+  MdPermContactCalendar,
+  MdOutlineQueryStats,
+  MdSpaceDashboard,
+} from 'react-icons/md'
 
 export const links = [
   {
@@ -66,5 +70,11 @@ export const dashboardlinks = [
     link: '/dashboard/all-users',
     text: 'All Users',
     icon: <AiFillWallet />,
+  },
+  {
+    id: 5,
+    link: '/dashboard/all-orders',
+    text: 'Orders',
+    icon: <MdSpaceDashboard />,
   },
 ]

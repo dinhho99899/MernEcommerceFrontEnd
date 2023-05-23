@@ -1,11 +1,11 @@
 import React from 'react'
 import { Product } from '../components'
 import styled from 'styled-components'
-const JobsContainer = ({ products }) => {
+const JobsContainer = ({ products = [] }) => {
   return (
     <Wrapper>
-      {products.map((product) => {
-        return <Product {...product} />
+      {products.map((product, index) => {
+        return <Product {...product} key={index} />
       })}
     </Wrapper>
   )

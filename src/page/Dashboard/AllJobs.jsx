@@ -10,6 +10,7 @@ const AllJobs = () => {
   }, [])
   const { all_products, isLoading } = useSelector((store) => store.products)
   if (isLoading) return <Loading center />
+
   return (
     <>
       <SearchContainer />

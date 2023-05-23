@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 const FormRow = ({
-  classname = '',
+  extraClass,
   name,
   value,
   labelText,
   type,
   handleChange,
   placeholder,
+  min,
+  max,
 }) => {
   return (
-    <Wrapper className={classname}>
+    <Wrapper className={extraClass}>
       <label htmlFor={name} className='form-label'>
         {labelText || name}
       </label>
@@ -22,12 +24,14 @@ const FormRow = ({
         onChange={handleChange}
         placeholder={placeholder}
         className='form-row'
+        minLength={min}
+        maxLength={max}
       />
     </Wrapper>
   )
 }
 const Wrapper = styled.div`
-  margin-bottom: 1rem;
+  padding: 0.5rem 0;
   .form-label {
     font-size: 1rem;
     text-transform: capitalize;
