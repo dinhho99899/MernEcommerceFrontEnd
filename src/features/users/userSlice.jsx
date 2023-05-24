@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import customFetch from '../../utils/axios'
+import customFetch, { localFetch } from '../../utils/axios'
+import { toast } from 'react-toastify'
 import {
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
@@ -8,13 +9,15 @@ import {
 const initialState = {
   isLoading: false,
   user: getUserFromLocalStorage(),
+  tempAvatar: '',
+  uploadLoading: false,
 }
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (user, thunkAPI) => {
     try {
-      const response = await customFetch.post('/auth/register', user)
+      const response = await localFetch.post('/auth/register', user)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -25,7 +28,7 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, thunkAPI) => {
     try {
-      const response = await customFetch.post('/auth/login', user)
+      const response = await localFetch.post('/auth/login', user)
       console.log(response)
       return response.data
     } catch (error) {
@@ -35,21 +38,51 @@ export const loginUser = createAsyncThunk(
 )
 export const updateUser = createAsyncThunk(
   'user/updateUser',
+  async (userInfo, thunkAPI) => {
+    console.log(thunkAPI.getState().user.user.token)
+    console.log(userInfo)
+    try {
+      const response = await localFetch.patch('/users/updateUser', userInfo, {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      })
+      console.log(response.data)
+      return response.data
+    } catch (error) {
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+
+export const logoutUser = createAsyncThunk(
+  'user/logoutUser',
   async (_, thunkAPI) => {
     try {
-      const response = await customFetch.get('/auth/logout')
+      const response = await localFetch.get('/auth/logout')
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
 )
-export const logoutUser = createAsyncThunk(
-  'user/logoutUser',
-  async (_, thunkAPI) => {
+export const uploadFile = createAsyncThunk(
+  'products/uploadFile',
+  async (formData, thunkAPI) => {
+    const { value, name, location, lastname } = formData
     try {
-      const response = await customFetch.get('/auth/logout')
-      return response.data
+      console.log(formData)
+      const response = await localFetch.post(`/products/uploadImage`, value, {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      })
+      const avatar = response.data.image.src
+      thunkAPI.dispatch(
+        updateUser({ name, location, lastname, avatar: avatar })
+      )
+      return response.data.image
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
@@ -61,6 +94,7 @@ const userSlice = createSlice({
   reducers: {
     logoutDirectly: (state) => {
       state.user = null
+      removeUserFromLocalStorage()
     },
   },
   extraReducers: (builder) => {
@@ -87,6 +121,26 @@ const userSlice = createSlice({
         state.isLoading = false
         state.user = null
         removeUserFromLocalStorage()
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        const { user } = payload
+        state.user = user
+        toast.success('Update Successfully')
+        addUserToLocalStorage(user)
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        toast.error(payload)
+      })
+      .addCase(uploadFile.pending, (state) => {
+        state.uploadLoading = true
+      })
+      .addCase(uploadFile.fulfilled, (state, { payload }) => {
+        state.tempAvatar = payload.src
+        state.uploadLoading = false
+      })
+      .addCase(uploadFile.rejected, (state, { payload }) => {
+        toast.error(payload)
+        state.uploadLoading = false
       })
   },
 })

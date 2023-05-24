@@ -58,6 +58,7 @@ const Cart = () => {
 const Wrapper = styled.aside`
   width: 100%;
   height: 100%;
+
   .cart-modal {
     position: fixed;
     right: 0;
@@ -68,6 +69,7 @@ const Wrapper = styled.aside`
     background: var(--background-grey1);
     transition: var(--transition);
     z-index: 999;
+    box-shadow: 0px 0px 1px 2px var(--background-grey1);
   }
   .show-cart {
     width: 100%;

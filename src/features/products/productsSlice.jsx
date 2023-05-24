@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import customFetch, { localFetch } from '../../utils/axios'
+import { toast } from 'react-toastify'
 const initialState = {
   isSidebarOpen: false,
   isLoading: false,
@@ -12,14 +13,14 @@ export const getUserProducts = createAsyncThunk(
   'products/getUserProducts',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/products', {
+      const response = await customFetch.get('/products', {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       })
       return response.data.products
     } catch (error) {
-      console.log(error)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
 )
@@ -27,7 +28,7 @@ export const getAllProductsByAdmin = createAsyncThunk(
   'products/allProductsByAdmin',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/admin')
+      const response = await customFetch.get('/admin')
       return response.data
     } catch (error) {
       console.log(error)
@@ -38,13 +39,14 @@ export const getSingleProductByAdmin = createAsyncThunk(
   'products/allProductByAdmin',
   async (id, thunkAPI) => {
     try {
-      const response = await localFetch.get(`/admin/${id}`)
+      const response = await customFetch.get(`/admin/${id}`)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
 )
+
 const productsSlice = createSlice({
   name: 'products',
   initialState,

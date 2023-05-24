@@ -2,20 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import heroimg from '../assets/images/hero.png'
+import { Link } from 'react-router-dom'
 const Hero = () => {
   return (
     <Wrapper className='section-center'>
       <div className='hero-section'>
         <div className='hero-info'>
           <Title title='NTV Nuts' />
-          <h1>A small business is only as good as its tools. </h1>
+          <h1 className='hero-title'>
+            A small business is only as good as its tools.{' '}
+          </h1>
           <div className='btn-container'>
-            <button className='btn' type='btn'>
+            <a href='#products' className='btn' type='btn'>
               Shop now
-            </button>
-            <button className='hero-btn' type='button'>
+            </a>
+            <Link to='/register' className='hero-btn' type='button'>
               Sign up
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -25,7 +28,7 @@ const Hero = () => {
 }
 const Wrapper = styled.section`
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   place-items: center;
   .hero-section {
     min-height: calc(100vh - 4.5rem);
@@ -35,8 +38,11 @@ const Wrapper = styled.section`
     width: 90%;
     max-height: 2000px;
   }
+  .hero-info {
+    display: grid;
+    gap: 0.5rem;
+  }
   .btn-container {
-    margin-top: 1rem;
     display: flex;
     gap: 1.2rem;
   }

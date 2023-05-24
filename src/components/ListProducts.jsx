@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Product from './Product'
-const ListProducts = ({ products }) => {
+const ListProducts = ({ products = [] }) => {
   return (
     <Wrapper>
       <div className='products'>

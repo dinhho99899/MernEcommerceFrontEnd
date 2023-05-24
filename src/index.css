@@ -12,6 +12,10 @@ body {
   font-family: 'Poppins', sans-serif
 }
 
+svg {
+  pointer-events: none;
+}
+
 :root {
   --primary50: #f0fdf4;
   --primary100: #dcfce7;

@@ -19,7 +19,7 @@ const Products = () => {
       </Wrapper>
     )
   return (
-    <Wrapper>
+    <Wrapper id='products'>
       <div className='section-center '>
         <div className='title-container'>
           <Title title='Our Products' />

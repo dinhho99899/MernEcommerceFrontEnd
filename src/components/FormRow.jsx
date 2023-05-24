@@ -10,6 +10,7 @@ const FormRow = ({
   placeholder,
   min,
   max,
+  accept,
 }) => {
   return (
     <Wrapper className={extraClass}>
@@ -26,6 +27,7 @@ const FormRow = ({
         className='form-row'
         minLength={min}
         maxLength={max}
+        accept={accept}
       />
     </Wrapper>
   )

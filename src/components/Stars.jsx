@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsStar, BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styled from 'styled-components'
 const Stars = ({ numbers, extraClass, name, handleChange }) => {
@@ -17,24 +17,32 @@ const Stars = ({ numbers, extraClass, name, handleChange }) => {
     <Wrapper className={extraClass}>
       {stars.map((star, index) => {
         return (
-          <span
+          <button
             key={index}
-            onClick={handleChange}
+            data-id={index + 1}
             name={name}
-            data-id={index}
             className='star'
+            onClick={handleChange}
           >
             {star}
-          </span>
+          </button>
         )
       })}
     </Wrapper>
   )
 }
 const Wrapper = styled.span`
-  color: #ffa858;
+  z-index: 999;
+  button {
+    background: transparent;
+    border: none;
+  }
+  .star {
+    color: #ffa858;
+  }
   .star:hover {
     cursor: pointer;
+    color: #dfa858;
   }
 `
 export default Stars

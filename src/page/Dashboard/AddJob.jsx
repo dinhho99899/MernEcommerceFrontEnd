@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import Wrapper from '../../assets/wrappers/DashboardFormPage'
 import { FormRow, FormSelect } from '../../components'
 import { editJobs } from '../../features/products/jobSlice'
+import styled from 'styled-components'
+
 import {
   handleChange,
   clearInput,
@@ -108,5 +109,5 @@ const AddJob = () => {
     </Wrapper>
   )
 }
-
+const Wrapper = styled.div``
 export default AddJob

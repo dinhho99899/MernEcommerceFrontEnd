@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Product from './Product'
 
-const GridViewProducts = ({ products }) => {
+const GridViewProducts = ({ products = [] }) => {
   return (
     <Wrapper>
       <div className='products'>

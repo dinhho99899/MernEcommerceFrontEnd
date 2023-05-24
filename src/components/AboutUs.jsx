@@ -34,14 +34,11 @@ const Wrapper = styled.section`
   }
   .about-info {
     max-width: 550px;
-    margin: 0 auto;
+    display: grid;
+    gap: 0.5rem;
+    align-self: self-start;
   }
-  .about-info h3 {
-    padding: 0.5rem 0;
-  }
-  .about-info p {
-    margin-bottom: 1rem;
-  }
+
   @media (min-width: 992px) {
     .about-section {
       grid-template-columns: 1fr 1fr;

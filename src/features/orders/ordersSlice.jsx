@@ -5,7 +5,7 @@ import {
   removeCartFromLocalStorage,
 } from '../../utils/LocalStorage'
 import { toast } from 'react-toastify'
-import { localFetch } from '../../utils/axios'
+import customFetch, { localFetch } from '../../utils/axios'
 const userInfo = {
   name: '',
   phone: '',
@@ -25,7 +25,7 @@ export const getAllOrders = createAsyncThunk(
   'orders/getAllOrders',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/orders', {
+      const response = await customFetch.get('/orders/getAllMyOrders', {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -39,7 +39,7 @@ export const createOrder = createAsyncThunk(
   'order/createOrder',
   async (order, thunkAPI) => {
     try {
-      const response = await localFetch.post('/orders', order, {
+      const response = await customFetch.post('/orders', order, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },

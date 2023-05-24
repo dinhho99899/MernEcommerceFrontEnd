@@ -28,9 +28,7 @@ const UserInfo = () => {
           setDropDown(!isDropDown)
         }}
       >
-        <span className='user-btn'>
-          <FaUserAlt />
-        </span>
+        <img src={user.avatar} className='user-avatar' alt='avatar' />
         <p className='username'>
           Hello <span className='color'>{user.name}</span>
         </p>
@@ -74,7 +72,11 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
-
+  .user-avatar {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+  }
   .username {
     justify-self: left;
   }

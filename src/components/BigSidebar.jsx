@@ -38,7 +38,6 @@ const Wrapper = styled.aside`
     position: sticky;
     top: 5.5rem;
   }
-
   @media (min-width: 992px) {
     padding: 1rem 1rem;
     .sidebar-container {

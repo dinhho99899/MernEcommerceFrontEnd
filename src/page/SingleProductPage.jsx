@@ -6,15 +6,14 @@ import { Gallery, Stars, Title, FormSelect, Comments } from '../components'
 import { Link } from 'react-router-dom'
 import { getSingleProductByAdmin } from '../features/products/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProductReviews } from '../features/reviews/reviewSlice'
 const SingleProduct = () => {
   const dispatch = useDispatch()
   const { productId: id } = useParams()
+
+  const { product } = useSelector((store) => store.products)
   useEffect(() => {
     dispatch(getSingleProductByAdmin(id))
-    dispatch(getAllProductReviews(id))
   }, [id])
-  const { product } = useSelector((store) => store.products)
   const {
     averageRating,
     category,
@@ -55,12 +54,14 @@ const SingleProduct = () => {
             )}
           </div>
           <div className='details'>
-            <div className='title'>
+            <div>
               <Title title='Info' />
             </div>
-            <p>{description}</p>
-            <p>{description}</p>
-            <p>{description}</p>
+            <div className='details-info'>
+              <p>{description}</p>
+              <p>{description}</p>
+              <p>{description}</p>
+            </div>
           </div>
           <div className='comments'>
             <Title title='Comments' />
@@ -125,9 +126,13 @@ const Wrapper = styled.section`
     padding: 1rem 1rem;
     border-radius: var(--radius);
     align-self: self-start;
+    display: grid;
+    gap: 0.5rem;
   }
   .comments {
     padding: 1rem 1rem;
+    display: grid;
+    gap: 0.5rem;
   }
   @media screen and (min-width: 992px) {
     .product-section {
