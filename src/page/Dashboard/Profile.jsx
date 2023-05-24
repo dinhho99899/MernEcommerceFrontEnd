@@ -21,7 +21,7 @@ const Wrapper = styled.section`
   border-radius: var(--radius);
   width: 100%;
   background: var(--background);
-  padding: 3rem 2rem 4rem;
+  padding: 2rem 2rem;
   box-shadow: var(--shadow-2);
   h3 {
     margin-top: 0;

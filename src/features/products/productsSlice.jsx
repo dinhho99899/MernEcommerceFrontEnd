@@ -18,6 +18,7 @@ export const getUserProducts = createAsyncThunk(
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       })
+      console.log(response)
       return response.data.products
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)

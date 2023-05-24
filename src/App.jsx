@@ -15,8 +15,8 @@ import {
   ShareLayoutDashboard,
   Stats,
   Profile,
-  AllJobs,
-  AddJob,
+  AllProducts,
+  AddProduct,
   ProtectRoute,
   AllUsers,
   Orders,
@@ -52,8 +52,8 @@ function App() {
             <Route index element={<Stats />}></Route>
             <Route path='stats' element={<Stats />}></Route>
             <Route path='profile' element={<Profile />}></Route>
-            <Route path='all-products' element={<AllJobs />}></Route>
-            <Route path='add-product' element={<AddJob />}></Route>
+            <Route path='all-products' element={<AllProducts />}></Route>
+            <Route path='add-product' element={<AddProduct />}></Route>
             <Route path='all-users' element={<AllUsers />}></Route>
             <Route path='all-orders' element={<Orders />}></Route>
           </Route>

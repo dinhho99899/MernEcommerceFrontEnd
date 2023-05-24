@@ -53,6 +53,23 @@ export const createOrder = createAsyncThunk(
     }
   }
 )
+export const createOrderWithoutAuth = createAsyncThunk(
+  'order/createOrderWithoutAuth',
+  async (order, thunkAPI) => {
+    try {
+      const response = await localFetch.post(
+        '/orders/createOrderWithoutAuth',
+        order
+      )
+      console.log(response)
+      thunkAPI.dispatch(clearCart())
+      thunkAPI.dispatch(clearValue())
+      return response.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
@@ -74,6 +91,10 @@ const ordersSlice = createSlice({
       .addCase(getAllOrders.fulfilled, (state, { payload }) => {
         state.orders = payload.orders
         state.count = payload.count
+      })
+      .addCase(createOrderWithoutAuth.fulfilled, (state, { payload }) => {
+        state.order = payload.order
+        toast.success(payload.msg)
       })
   },
 })

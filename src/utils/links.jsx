@@ -72,7 +72,7 @@ export const dashboardlinks = [
     icon: <AiFillWallet />,
   },
   {
-    id: 5,
+    id: 6,
     link: '/dashboard/all-orders',
     text: 'Orders',
     icon: <MdSpaceDashboard />,

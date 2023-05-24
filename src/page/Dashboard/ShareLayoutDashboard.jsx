@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { BigSidebar, SmallSidebar, Navbar } from '../../components'
+import { BigSidebar } from '../../components'
 import styled from 'styled-components'
 const ShareLayoutDashboard = () => {
   return (

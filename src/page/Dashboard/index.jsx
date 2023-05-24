@@ -1,6 +1,6 @@
 import Stats from './Stats'
-import AddJob from './AddJob'
-import AllJobs from './AllJobs'
+import AddProduct from './AddProduct'
+import AllProducts from './AllProducts'
 import Profile from './Profile'
 import ShareLayoutDashboard from './ShareLayoutDashboard'
 import ProtectRoute from './ProtectRoute'
@@ -10,8 +10,8 @@ export {
   Stats,
   Orders,
   Profile,
-  AddJob,
-  AllJobs,
+  AddProduct,
+  AllProducts,
   ShareLayoutDashboard,
   ProtectRoute,
   AllUsers,

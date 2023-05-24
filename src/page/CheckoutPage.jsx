@@ -5,12 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { CartItem } from '../components'
 import { Link } from 'react-router-dom'
 import { formatPrice } from '../utils/LocalStorage'
-import { handleChange, createOrder } from '../features/orders/ordersSlice'
+import {
+  handleChange,
+  createOrder,
+  createOrderWithoutAuth,
+} from '../features/orders/ordersSlice'
 import { toast } from 'react-toastify'
 const CheckoutPage = () => {
   const { cart, total_amount } = useSelector((store) => store.cart)
   const { name, email, phone, address, note, tax, shippingFee, order } =
     useSelector((store) => store.orders)
+  const { user } = useSelector((store) => store.user)
   const dispatch = useDispatch()
   const handleInput = (e) => {
     const name = e.target.name
@@ -25,6 +30,21 @@ const CheckoutPage = () => {
     }
     if (!name || !email || !address || !phone) {
       toast.error('Please fill out all fields')
+      return
+    }
+    if (!user) {
+      dispatch(
+        createOrderWithoutAuth({
+          shippingFee,
+          tax,
+          items: cart,
+          name,
+          email,
+          address,
+          note,
+          phone,
+        })
+      )
       return
     }
     dispatch(

@@ -23,7 +23,6 @@ export const removeUserFromLocalStorage = () => {
 export const formatPrice = (number) => {
   return new Intl.NumberFormat('de-DE').format(number)
 }
-console.log(formatPrice(500000))
 export const getUniqueValues = (data, type) => {
   let unique = data.map((item) => item[type])
   if (type === 'colors') {

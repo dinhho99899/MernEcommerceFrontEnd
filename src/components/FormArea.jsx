@@ -28,7 +28,7 @@ const FormArea = ({
   )
 }
 const Wrapper = styled.div`
-  margin-bottom: 1rem;
+  padding: 0.5rem 0;
   .form-label {
     font-size: 1rem;
     text-transform: capitalize;

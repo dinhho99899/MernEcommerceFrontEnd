@@ -3,7 +3,7 @@ import userSlice from './features/users/userSlice'
 import productsSlice from './features/products/productsSlice'
 import CartSlice from './features/cart/CartSlice'
 import allJobsSlice from './features/products/allJobsSlice'
-import jobSlice from './features/products/jobSlice'
+import productSlice from './features/products/productSlice'
 import reviewSlice from './features/reviews/reviewSlice'
 import ordersSlice from './features/orders/ordersSlice'
 export const store = configureStore({
@@ -12,7 +12,7 @@ export const store = configureStore({
     products: productsSlice,
     cart: CartSlice,
     allJobs: allJobsSlice,
-    job: jobSlice,
+    product: productSlice,
     reviews: reviewSlice,
     orders: ordersSlice,
   },

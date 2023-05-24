@@ -39,8 +39,10 @@ import AmountBtns from './AmountBtns'
 import CartItem from './CartItem'
 import Comment from './Comment'
 import ProfileContainer from './ProfileContainer'
+import DashboardProduct from './DashboardProduct'
 export {
   Title,
+  DashboardProduct,
   CartItem,
   Comment,
   AddToCart,

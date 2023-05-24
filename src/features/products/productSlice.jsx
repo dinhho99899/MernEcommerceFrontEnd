@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import customFetch from '../../utils/axios'
+import customFetch, { localFetch } from '../../utils/axios'
 import { logoutUser } from '../users/userSlice'
 const initialState = {
   isLoading: false,
@@ -18,7 +18,7 @@ export const createJob = createAsyncThunk(
   'jobs/createJob',
   async (job, thunkAPI) => {
     try {
-      const response = await customFetch.post('/jobs', job, {
+      const response = await localFetch.post('/jobs', job, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -50,8 +50,8 @@ export const editJobs = createAsyncThunk(
     }
   }
 )
-const jobSlice = createSlice({
-  name: 'job',
+const productSlice = createSlice({
+  name: 'product',
   initialState,
   reducers: {
     handleChange: (state, { payload }) => {
@@ -91,5 +91,5 @@ const jobSlice = createSlice({
       })
   },
 })
-export const { handleChange, clearInput, setEditJob } = jobSlice.actions
-export default jobSlice.reducer
+export const { handleChange, clearInput, setEditJob } = productSlice.actions
+export default productSlice.reducer
