@@ -28,7 +28,7 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (user, thunkAPI) => {
     try {
-      const response = await localFetch.post('/auth/login', user)
+      const response = await customFetch.post('/auth/login', user)
       console.log(response)
       return response.data
     } catch (error) {
@@ -42,7 +42,7 @@ export const updateUser = createAsyncThunk(
     console.log(thunkAPI.getState().user.user.token)
     console.log(userInfo)
     try {
-      const response = await localFetch.patch('/users/updateUser', userInfo, {
+      const response = await customFetch.patch('/users/updateUser', userInfo, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -60,7 +60,7 @@ export const logoutUser = createAsyncThunk(
   'user/logoutUser',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/auth/logout')
+      const response = await customFetch.get('/auth/logout')
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -73,7 +73,7 @@ export const uploadFile = createAsyncThunk(
     const { value, name, location, lastname } = formData
     try {
       console.log(formData)
-      const response = await localFetch.post(`/products/uploadImage`, value, {
+      const response = await customFetch.post(`/products/uploadImage`, value, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
