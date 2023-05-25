@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { Logo, UserInfo } from '../components'
 import { NavLink } from 'react-router-dom'
@@ -12,8 +12,14 @@ const Sidebar = () => {
   const toggle = () => {
     dispatch(toggleSidebar())
   }
+  const outsideToggle = (e) => {
+    if (e.target.classList.contains('modal')) {
+      toggle()
+      return
+    }
+  }
   return (
-    <Wrapper>
+    <Wrapper className='modal' onClick={outsideToggle}>
       <div className={isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}>
         <div className='header'>
           <Logo toggle={toggle} />
@@ -33,43 +39,43 @@ const Sidebar = () => {
                 }}
                 onClick={toggle}
               >
-                <div className='icon-link'>{icon}</div>
+                <span className='icon-link'>{icon}</span>
                 {text}
               </NavLink>
             )
           })}
         </div>
         <div className='login-container'>
-          <UserInfo />
+          <UserInfo toggle={toggle} />
         </div>
       </div>
     </Wrapper>
   )
 }
 const Wrapper = styled.section`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  display: grid;
+  place-items: center;
+
   .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    background: var(--background);
-    display: grid;
-    grid-template-rows: auto 1fr 200px;
-    box-shadow: var(--shadow);
-    height: 0;
-    overflow: hidden;
-    z-index: 10;
-  }
-  .show-sidebar {
+    height: 90%;
+    width: 80%;
     padding: 1rem 1rem;
-    padding-bottom: 3rem;
-    height: 100%;
-    min-height: 100vh;
-    transition: var(--transition);
-  }
-  .header {
+    box-shadow: var(--light-shadow);
+    background: var(--background-grey1);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
     position: relative;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
   }
+
   .close-btn {
     position: absolute;
     font-size: 1.6rem;
@@ -87,14 +93,12 @@ const Wrapper = styled.section`
     transition: var(--transition);
   }
   .icon-link {
-    font-size: 1.6rem;
-    padding-top: 0.35rem;
+    font-size: 1.4rem;
   }
   .link {
     color: var(--text-color);
     display: block;
     padding: 1rem 1rem;
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     gap: 0.7rem;
@@ -113,9 +117,7 @@ const Wrapper = styled.section`
     gap: 1rem;
   }
   @media (min-width: 992px) {
-    .sidebar {
-      display: none;
-    }
+    display: none;
   }
 `
 export default Sidebar

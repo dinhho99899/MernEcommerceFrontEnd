@@ -9,6 +9,7 @@ import { addCartToLocalStorage } from '../utils/LocalStorage'
 const ShareLayout = () => {
   const dispatch = useDispatch()
   const { cart } = useSelector((store) => store.cart)
+  const { isSidebarOpen } = useSelector((store) => store.products)
   useEffect(() => {
     dispatch(handleCartTotal())
     addCartToLocalStorage(cart)
@@ -16,7 +17,7 @@ const ShareLayout = () => {
   return (
     <Wrapper>
       <Navbar />
-      <Sidebar />
+      {isSidebarOpen && <Sidebar />}
       <Cart />
       <div className='main-container'>
         <Outlet />

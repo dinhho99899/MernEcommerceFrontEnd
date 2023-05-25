@@ -3,29 +3,94 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { FormRow, FormSelect, FormArea } from '../../components'
 import styled from 'styled-components'
-
+import { handleChange } from '../../features/products/productSlice'
 const AddProduct = () => {
+  const {
+    isLoading,
+    name,
+    category,
+    description,
+    price,
+    image,
+    title,
+    usermanual,
+    info,
+    company,
+    featured,
+    freeShipping,
+    inventory,
+  } = useSelector((store) => store.product)
   const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(e.target)
   }
-
-  const handleJob = (e) => {}
+  const handleInput = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    dispatch(handleChange({ name, value }))
+  }
   return (
     <Wrapper>
       <form className='form' onSubmit={handleSubmit}>
         <h3>Add Product</h3>
         <div className='form-center'>
           <div className='form-info'>
-            <FormRow name='name' type='text' />
-            <FormRow name='category' type='text' />
-            <FormRow name='price' type='number' />
-            <FormRow name='description' type='text' />
-            <FormRow name='description' type='text' />
-            <FormRow name='title' type='text' />
-            <FormArea name='usage' type='text' />
-            <FormRow name='inventory' type='number' />
-            <FormRow name='image' type='file' accept='image/*' />
+            <FormRow
+              name='name'
+              type='text'
+              value={name}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='category'
+              type='text'
+              value={category}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='price'
+              type='number'
+              value={price}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='description'
+              type='text'
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='description'
+              type='text'
+              value={description}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='title'
+              type='text'
+              value={title}
+              handleChange={handleInput}
+            />
+            <FormArea
+              name='usermanual'
+              labelText='user manual'
+              type='text'
+              value={usermanual}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='inventory'
+              type='number'
+              value={inventory}
+              handleChange={handleInput}
+            />
+            <FormRow
+              name='image'
+              type='file'
+              accept='image/*'
+              value={image}
+              handleChange={handleInput}
+            />
           </div>
           <div className='btn-container'>
             <button type='button' className='btn  clear-btn'>

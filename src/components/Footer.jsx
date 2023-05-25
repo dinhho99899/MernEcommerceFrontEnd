@@ -10,7 +10,7 @@ const Footer = () => {
       <div className='footer section-center'>
         <div className='logo'>
           <div>
-            <Logo />
+            <Logo extra='white-text' />
           </div>
           <p className='text'>
             Launch your own Software As A Service Application with Flex

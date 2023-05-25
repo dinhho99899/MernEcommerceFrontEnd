@@ -4,18 +4,23 @@ import customFetch, { localFetch } from '../../utils/axios'
 import { logoutUser } from '../users/userSlice'
 const initialState = {
   isLoading: false,
-  position: '',
+  name: '',
+  category: '',
+  description: '',
+  price: 0,
+  image: '',
+  title: '',
+  usermanual: '',
   company: '',
-  jobLocation: '',
-  jobTypeOptions: ['full-time', 'part-time', 'remote', 'internship'],
-  jobType: 'full-time',
-  status: 'pending',
-  statusOptions: ['pending', 'interview', 'declined'],
+  featured: false,
+  freeShipping: false,
+  inventory: 0,
+  averageRating: 5,
   isEditing: false,
-  editJobId: '',
+  editId: '',
 }
-export const createJob = createAsyncThunk(
-  'jobs/createJob',
+export const createProduct = createAsyncThunk(
+  'products/createProduct',
   async (job, thunkAPI) => {
     try {
       const response = await localFetch.post('/jobs', job, {
@@ -34,8 +39,8 @@ export const createJob = createAsyncThunk(
     }
   }
 )
-export const editJobs = createAsyncThunk(
-  'jobs/editJob',
+export const editProduct = createAsyncThunk(
+  'products/editProduct',
   async ({ jobId, job }, thunkAPI) => {
     try {
       const response = await customFetch.patch(`/jobs/${jobId}`, job, {
@@ -67,25 +72,25 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createJob.pending, (state) => {
+      .addCase(createProduct.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createJob.fulfilled, (state, action) => {
+      .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false
         toast.success('Job Created')
       })
-      .addCase(createJob.rejected, (state, { payload }) => {
+      .addCase(createProduct.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })
-      .addCase(editJobs.pending, (state) => {
+      .addCase(editProduct.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(editJobs.fulfilled, (state) => {
+      .addCase(editProduct.fulfilled, (state) => {
         state.isLoading = false
         toast.success('Job Modified...')
       })
-      .addCase(editJobs.rejected, (state, { payload }) => {
+      .addCase(editProduct.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })

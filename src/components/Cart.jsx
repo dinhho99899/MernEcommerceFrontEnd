@@ -70,7 +70,7 @@ const Wrapper = styled.aside`
     z-index: 999;
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
   }
   .show-cart {
     width: 100%;

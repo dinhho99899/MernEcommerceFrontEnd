@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
-import heroimg from '../assets/images/hero.png'
+import service from '../assets/images/photo4.png'
 import { GoMailRead } from 'react-icons/go'
 const Services = () => {
   return (
@@ -39,7 +39,7 @@ const Services = () => {
               </p>
             </article>
           </div>
-          <img src={heroimg} alt='services' className='services-img'></img>
+          <img src={service} alt='services' className='services-img'></img>
           <div>
             <article className='service'>
               <span className='service-icon'>
@@ -103,10 +103,10 @@ const Wrapper = styled.section`
   }
   .services-img {
     display: none;
-    height: 90%;
+    height: 100%;
   }
   h4 {
-    margin-top: 1rem;
+    margin: 0.5rem 0;
   }
 
   @media (min-width: 992px) {
@@ -115,7 +115,7 @@ const Wrapper = styled.section`
     }
     .services-container {
       display: grid;
-      grid-template-columns: 1fr 250px 1fr;
+      grid-template-columns: 1fr 400px 1fr;
       justify-content: center;
       align-items: center;
     }

@@ -2,14 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.svg'
-const Logo = ({ toggle }) => {
+const Logo = ({ toggle, extra }) => {
   return (
     <Wrapper>
       <Link to='/' onClick={toggle}>
         <img src={logo} alt='ntvnuts' className='nav-logo'></img>
       </Link>
       <h3 className='logo-text'>
-        NTV<span className='brand'>Nuts</span>
+        <span className={extra}>NTV</span>
+        <span className='brand'>Nuts</span>
       </h3>
     </Wrapper>
   )
@@ -32,6 +33,9 @@ const Wrapper = styled.div`
   }
   .logo-text {
     font-size: 1.15rem;
+  }
+  .white-text {
+    color: white;
   }
 `
 export default Logo

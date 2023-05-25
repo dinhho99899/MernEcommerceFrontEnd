@@ -93,13 +93,13 @@ const Register = () => {
               </div>
               <p className='color'>Forgot Password</p>
             </div>
-            {isLoading ? (
-              <button type='submit' className='btn'>
-                {data.isMember ? 'Login' : 'Register'}
+            {data.isMember ? (
+              <button type='submit' className='btn' disabled={isLoading}>
+                {isLoading ? 'Loading...' : 'Login'}
               </button>
             ) : (
-              <button type='submit' className='btn'>
-                {data.isMember ? 'Login' : 'Register'}
+              <button type='submit' className='btn' disabled={isLoading}>
+                {isLoading ? 'Loading...' : 'Register'}
               </button>
             )}
           </form>

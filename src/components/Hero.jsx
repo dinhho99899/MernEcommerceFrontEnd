@@ -46,9 +46,15 @@ const Wrapper = styled.section`
     display: flex;
     gap: 1.2rem;
   }
+  .hero-img {
+    display: none;
+  }
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    .hero-img {
+      display: block;
+    }
   }
 `
 export default Hero

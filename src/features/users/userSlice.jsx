@@ -69,7 +69,7 @@ export const uploadFile = createAsyncThunk(
   async (formData, thunkAPI) => {
     const { value, name, location, lastname } = formData
     try {
-      const response = await localFetch.post(`/products/uploadImage`, value, {
+      const response = await customFetch.post(`/products/uploadImage`, value, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -102,20 +102,29 @@ const userSlice = createSlice({
         const { user } = payload
         state.isLoading = false
         state.user = user
+        toast.success('Sign up completed')
         addUserToLocalStorage(user)
       })
       .addCase(registerUser.rejected, (state) => {
         state.isLoading = false
       })
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true
+      })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         const { user } = payload
         state.isLoading = false
         state.user = user
+        toast.success('Login successfully')
         addUserToLocalStorage(user)
+      })
+      .addCase(loginUser.rejected, (state) => {
+        state.isLoading = false
       })
       .addCase(logoutUser.fulfilled, (state, { payload }) => {
         state.isLoading = false
         state.user = null
+        toast.success('Logout successfully')
         removeUserFromLocalStorage()
       })
       .addCase(updateUser.fulfilled, (state, { payload }) => {

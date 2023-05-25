@@ -1,6 +1,5 @@
-import { BsInfoSquare, BsBook } from 'react-icons/bs'
 import {
-  AiOutlineHome,
+  AiFillHome,
   AiFillFolderAdd,
   AiFillWallet,
   AiTwotoneHome,
@@ -9,6 +8,9 @@ import {
   MdPermContactCalendar,
   MdOutlineQueryStats,
   MdSpaceDashboard,
+  MdChromeReaderMode,
+  MdContactPage,
+  MdDescription,
 } from 'react-icons/md'
 
 export const links = [
@@ -16,26 +18,26 @@ export const links = [
     id: 1,
     link: '/',
     text: 'Trang chủ',
-    icon: <AiOutlineHome />,
+    icon: <AiFillHome />,
   },
   {
     id: 2,
     link: '/blog',
     text: 'Blog',
-    icon: <BsInfoSquare />,
+    icon: <MdChromeReaderMode />,
   },
 
   {
     id: 3,
     link: '/contact',
     text: 'Liên hệ',
-    icon: <MdPermContactCalendar className='icon' />,
+    icon: <MdContactPage />,
   },
   {
     id: 4,
     link: '/policy',
     text: 'Chinh sach',
-    icon: <BsBook className='icon' />,
+    icon: <MdDescription />,
   },
 ]
 
