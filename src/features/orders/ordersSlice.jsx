@@ -14,6 +14,7 @@ const userInfo = {
   note: '',
 }
 const initialState = {
+  isCompleteModal: false,
   shippingFee: 20000,
   tax: '0',
   ...userInfo,
@@ -81,12 +82,16 @@ const ordersSlice = createSlice({
     clearValue: (state) => {
       return { ...initialState }
     },
+    toggleCompletedModal: (state) => {
+      state.isCompleteModal = false
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(createOrder.fulfilled, (state, { payload }) => {
         state.order = payload.order
         toast.success(payload.msg)
+        state.isCompleteModal = true
       })
       .addCase(getAllOrders.fulfilled, (state, { payload }) => {
         state.orders = payload.orders
@@ -95,8 +100,10 @@ const ordersSlice = createSlice({
       .addCase(createOrderWithoutAuth.fulfilled, (state, { payload }) => {
         state.order = payload.order
         toast.success(payload.msg)
+        state.isCompleteModal = true
       })
   },
 })
-export const { handleChange, clearValue } = ordersSlice.actions
+export const { handleChange, clearValue, toggleCompletedModal } =
+  ordersSlice.actions
 export default ordersSlice.reducer

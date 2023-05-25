@@ -40,8 +40,10 @@ import CartItem from './CartItem'
 import Comment from './Comment'
 import ProfileContainer from './ProfileContainer'
 import DashboardProduct from './DashboardProduct'
+import CompleteOrder from './CompleteOrder'
 export {
   Title,
+  CompleteOrder,
   DashboardProduct,
   CartItem,
   Comment,

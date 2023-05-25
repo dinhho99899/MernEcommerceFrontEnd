@@ -17,7 +17,7 @@ export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (user, thunkAPI) => {
     try {
-      const response = await localFetch.post('/auth/register', user)
+      const response = await customFetch.post('/auth/register', user)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -39,15 +39,12 @@ export const loginUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (userInfo, thunkAPI) => {
-    console.log(thunkAPI.getState().user.user.token)
-    console.log(userInfo)
     try {
       const response = await customFetch.patch('/users/updateUser', userInfo, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       })
-      console.log(response.data)
       return response.data
     } catch (error) {
       console.log(error)
@@ -72,8 +69,7 @@ export const uploadFile = createAsyncThunk(
   async (formData, thunkAPI) => {
     const { value, name, location, lastname } = formData
     try {
-      console.log(formData)
-      const response = await customFetch.post(`/products/uploadImage`, value, {
+      const response = await localFetch.post(`/products/uploadImage`, value, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },

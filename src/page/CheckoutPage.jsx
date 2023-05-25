@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FormRow, FormArea, Title } from '../components'
+import { FormRow, FormArea, Title, CompleteOrder } from '../components'
 import { useSelector, useDispatch } from 'react-redux'
 import { CartItem } from '../components'
 import { Link } from 'react-router-dom'
@@ -9,14 +9,26 @@ import {
   handleChange,
   createOrder,
   createOrderWithoutAuth,
+  toggleCompletedModal,
 } from '../features/orders/ordersSlice'
 import { toast } from 'react-toastify'
 const CheckoutPage = () => {
   const { cart, total_amount } = useSelector((store) => store.cart)
-  const { name, email, phone, address, note, tax, shippingFee, order } =
-    useSelector((store) => store.orders)
+  const {
+    name,
+    email,
+    phone,
+    address,
+    note,
+    tax,
+    shippingFee,
+    isCompleteModal,
+  } = useSelector((store) => store.orders)
   const { user } = useSelector((store) => store.user)
   const dispatch = useDispatch()
+  const toggle = () => {
+    dispatch(toggleCompletedModal())
+  }
   const handleInput = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -60,10 +72,12 @@ const CheckoutPage = () => {
       })
     )
   }
-  console.log(order)
+
   return (
     <Wrapper>
       <div className='left'>
+        {isCompleteModal && <CompleteOrder toggle={toggle} />}
+
         {cart.length > 0 ? (
           <div className='cart-info'>
             <div className='cart-title'>
@@ -162,7 +176,7 @@ const CheckoutPage = () => {
 }
 const Wrapper = styled.section`
   display: grid;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4.5rem);
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
     .form {

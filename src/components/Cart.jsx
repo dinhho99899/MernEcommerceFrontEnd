@@ -60,21 +60,22 @@ const Wrapper = styled.aside`
   height: 100%;
   .cart-modal {
     position: fixed;
-    right: 1rem;
+    right: 0;
     top: 5rem;
     width: 0;
     max-width: 400px;
-    height: calc(80vh - 4.5rem);
+    height: 0;
     background: var(--background-container);
     transition: var(--transition);
     z-index: 999;
-
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
   }
   .show-cart {
     width: 100%;
+    height: calc(80vh - 4.5rem);
+    right: 1rem;
   }
   .empty {
     text-align: center;
