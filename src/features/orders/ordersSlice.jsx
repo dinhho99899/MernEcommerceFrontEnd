@@ -57,7 +57,7 @@ export const createOrderWithoutAuth = createAsyncThunk(
   'order/createOrderWithoutAuth',
   async (order, thunkAPI) => {
     try {
-      const response = await localFetch.post(
+      const response = await customFetch.post(
         '/orders/createOrderWithoutAuth',
         order
       )
