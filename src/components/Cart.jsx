@@ -58,18 +58,20 @@ const Cart = () => {
 const Wrapper = styled.aside`
   width: 100%;
   height: 100%;
-
   .cart-modal {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 1rem;
+    top: 5rem;
     width: 0;
     max-width: 400px;
-    height: 100%;
-    background: var(--background-grey1);
+    height: calc(80vh - 4.5rem);
+    background: var(--background-container);
     transition: var(--transition);
     z-index: 999;
-    box-shadow: 0px 0px 1px 2px var(--background-grey1);
+
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
   }
   .show-cart {
     width: 100%;
@@ -90,7 +92,7 @@ const Wrapper = styled.aside`
     text-transform: capitalize;
     position: relative;
     height: 4.5rem;
-    background: var(--background);
+    background: var(--background-grey1);
     display: grid;
     align-items: center;
   }
@@ -120,7 +122,7 @@ const Wrapper = styled.aside`
     grid-template-columns: 1fr auto;
     align-items: center;
     padding: 1rem 1rem;
-    background: var(--background);
+    background: var(--background-grey1);
   }
 `
 export default Cart

@@ -59,8 +59,8 @@ const CheckoutPage = () => {
         phone,
       })
     )
-    console.log(name, email, phone, address, note, tax, shippingFee, cart)
   }
+  console.log(order)
   return (
     <Wrapper>
       <div className='left'>

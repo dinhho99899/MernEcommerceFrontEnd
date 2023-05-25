@@ -122,7 +122,7 @@ const Register = () => {
 }
 const Wrapper = styled.div`
   background: var(--background-grey1);
-  min-height: calc(100vh - 4.2rem);
+  min-height: calc(100vh - 4.5rem);
   display: grid;
   place-items: center;
   .modal {
@@ -132,7 +132,7 @@ const Wrapper = styled.div`
   .modal-content {
     display: grid;
     place-items: center;
-    background: var(--white);
+    background: var(--background-container);
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem 3rem;
@@ -154,11 +154,8 @@ const Wrapper = styled.div`
   }
   .title {
     margin-bottom: 0.5rem;
-    color: var(--grey-text);
   }
-  p {
-    color: var(--grey-text);
-  }
+
   .form {
     margin-top: 1rem;
     width: 100%;
@@ -175,7 +172,6 @@ const Wrapper = styled.div`
   .check {
     display: flex;
     gap: 0.3rem;
-    color: var(--grey-text);
   }
   .btn {
     width: 100%;

@@ -8,8 +8,8 @@ import { toast } from 'react-toastify'
 import customFetch, { localFetch } from '../../utils/axios'
 const userInfo = {
   name: '',
-  phone: '',
   email: '',
+  phone: '',
   address: '',
   note: '',
 }

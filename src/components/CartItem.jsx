@@ -58,8 +58,12 @@ const Wrapper = styled.article`
 
   .info {
     text-transform: capitalize;
+    justify-self: left;
+    text-align: left;
   }
-
+  p {
+    text-align: left;
+  }
   .color {
     color: var(--primary500);
   }
