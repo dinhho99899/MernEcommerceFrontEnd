@@ -1,10 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-const FormSelect = ({ title, list = [], unit }) => {
+const FormSelect = ({
+  name,
+  title,
+  list = [],
+  unit,
+  labelText,
+  handleChange,
+}) => {
   return (
     <Wrapper>
-      <p>{title}</p>
-      <select className='select'>
+      <label htmlFor={name} className='form-label'>
+        {labelText || name}
+      </label>
+      <select className='select' onChange={handleChange}>
         {list.map((item) => {
           return (
             <option value={item}>
@@ -18,16 +27,19 @@ const FormSelect = ({ title, list = [], unit }) => {
   )
 }
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  .form-label {
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
   .select {
-    padding: 0.375rem 0.5rem;
-    border: none;
-    border-radius: 0.2rem;
+    border-radius: 0.35rem;
+    margin-top: 0.5rem;
+    border: 1px solid var(--grey200);
     background: transparent;
+    width: 100%;
     font-size: 1.1rem;
     color: var(--text-color);
+    padding: 0.6rem 0.6rem;
   }
 `
 export default FormSelect

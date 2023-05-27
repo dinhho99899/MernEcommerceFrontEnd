@@ -9,6 +9,7 @@ const AddProduct = () => {
     isLoading,
     name,
     category,
+    allCategrory,
     description,
     price,
     image,
@@ -42,10 +43,11 @@ const AddProduct = () => {
               value={name}
               handleChange={handleInput}
             />
-            <FormRow
+            <FormSelect
               name='category'
               type='text'
               value={category}
+              list={allCategrory}
               handleChange={handleInput}
             />
             <FormRow
@@ -56,6 +58,7 @@ const AddProduct = () => {
             />
             <FormRow
               name='description'
+              labelText='short description'
               type='text'
               handleChange={handleInput}
             />
@@ -114,10 +117,12 @@ const Wrapper = styled.div`
   }
   .form-info {
     display: grid;
+    gap: 0.5rem;
   }
   .btn-container {
     display: flex;
     gap: 0.5rem;
+    margin-top: 1rem;
   }
   @media (min-width: 992px) {
     .form-info {

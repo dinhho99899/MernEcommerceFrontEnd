@@ -20,16 +20,6 @@ const GridViewProducts = ({ products = [] }) => {
           return <Product product={product} key={product.id} />
         })}
       </div>
-      <div className='btn-container'>
-        <span className='link previous'>
-          <AiOutlineLeft />
-        </span>
-        <span className='link panigation-btn active'>1</span>
-        <span className='link panigation-btn'>2</span>
-        <span className='link next'>
-          <AiOutlineRight />
-        </span>
-      </div>
     </Wrapper>
   )
 }

@@ -17,7 +17,7 @@ const ShareLayoutDashboard = () => {
   )
 }
 const Wrapper = styled.section`
-  min-height: calc(100vh - 4.2rem);
+  min-height: calc(100vh - 4.5rem);
   .dashboard {
     display: grid;
     grid-template-columns: auto 1fr;

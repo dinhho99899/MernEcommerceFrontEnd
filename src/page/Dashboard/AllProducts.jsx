@@ -20,8 +20,6 @@ const AllProducts = () => {
         {all_products.map((product, index) => {
           return <DashboardProduct {...product} key={index} />
         })}
-        <DashboardProduct />
-        <DashboardProduct />
       </div>
     </Wrapper>
   )

@@ -2,15 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import xx from '../assets/images/blog1.png'
 import Stars from './Stars'
-const Comment = ({ _id: id, rating, title, comment, createdAt, user }) => {
-  console.log(user)
+import moment from 'moment'
+const Comment = ({ _id: id, rating, title, comment, createdAt, user = {} }) => {
+  const date = moment(createdAt).format('DD-MM-YYYY')
   return (
     <Wrapper>
       <div className='header'>
         <img src={xx} alt='a' className='avatar' />
         <p>
-          <span className='author'>{name} </span>
-          <span>&#183; 15 Jan 2022</span>
+          <span className='author'>{user?.name} </span>
+          <span>&#183; {date}</span>
         </p>
         <Stars extraClass='flex-right' numbers={rating} />
       </div>

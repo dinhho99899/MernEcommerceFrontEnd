@@ -15,12 +15,14 @@ const userInfo = {
 }
 const initialState = {
   isCompleteModal: false,
+  isLoading: false,
   shippingFee: 20000,
   tax: '0',
   ...userInfo,
   order: null,
   orders: [],
   count: 0,
+  stats: [],
 }
 export const getAllOrders = createAsyncThunk(
   'orders/getAllOrders',
@@ -33,7 +35,9 @@ export const getAllOrders = createAsyncThunk(
       })
       console.log(response)
       return response.data
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
   }
 )
 export const createOrder = createAsyncThunk(
@@ -62,12 +66,27 @@ export const createOrderWithoutAuth = createAsyncThunk(
         '/orders/createOrderWithoutAuth',
         order
       )
-      console.log(response)
       thunkAPI.dispatch(clearCart())
       thunkAPI.dispatch(clearValue())
       return response.data
     } catch (error) {
       console.log(error)
+    }
+  }
+)
+export const getStats = createAsyncThunk(
+  'orders/getStats',
+  async (_, thunkAPI) => {
+    try {
+      const response = await localFetch.get('/orders/getStats', {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      })
+      console.log(response.data.orders)
+      return response.data.orders
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
     }
   }
 )
@@ -93,14 +112,26 @@ const ordersSlice = createSlice({
         toast.success(payload.msg)
         state.isCompleteModal = true
       })
+      .addCase(getAllOrders.pending, (state) => {
+        state.isLoading = true
+      })
       .addCase(getAllOrders.fulfilled, (state, { payload }) => {
+        state.isLoading = false
         state.orders = payload.orders
         state.count = payload.count
+      })
+      .addCase(getAllOrders.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
       })
       .addCase(createOrderWithoutAuth.fulfilled, (state, { payload }) => {
         state.order = payload.order
         toast.success(payload.msg)
         state.isCompleteModal = true
+      })
+      .addCase(getStats.fulfilled, (state, { payload }) => {
+        state.stats = payload
+        state.isLoading = false
       })
   },
 })

@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import heroimg from '../assets/images/hero.png'
-import { Link } from 'react-router-dom'
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import { AddToCart } from '../components'
 import { formatPrice } from '../utils/LocalStorage'
-const DashboardProduct = ({ product = {} }) => {
-  const [like, setLike] = useState(false)
-  const { _id, category, description, name, price, image, extraclass } = product
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteProduct } from '../features/products/productSlice'
+const DashboardProduct = ({
+  id,
+  category,
+  description,
+  name,
+  price,
+  image,
+  extraclass,
+}) => {
+  const dispatch = useDispatch()
+  const { isLoading } = useSelector((store) => store.product)
   return (
-    <Wrapper className={extraclass}>
+    <Wrapper>
       <div className='img-container'>
         <img src={heroimg} alt={name} className='product-img'></img>
       </div>
@@ -24,8 +30,15 @@ const DashboardProduct = ({ product = {} }) => {
           <button className='btn' type='button'>
             Edit
           </button>
-          <button className='btn' type='button'>
-            Delete
+          <button
+            className='btn'
+            type='button'
+            disabled={isLoading}
+            onClick={() => {
+              dispatch(deleteProduct(id))
+            }}
+          >
+            {isLoading ? 'Deleting' : 'Delete'}
           </button>
         </div>
       </div>

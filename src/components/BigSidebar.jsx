@@ -25,8 +25,8 @@ const BigSidebar = () => {
 const Wrapper = styled.aside`
   display: block;
   padding: 1rem 0rem;
+  min-height: calc(100vh - 4.5rem);
   .sidebar-container {
-    min-height: calc(100vh - 4.2rem);
     height: 100%;
     transition: var(--transition);
   }
@@ -39,9 +39,8 @@ const Wrapper = styled.aside`
     top: 5.5rem;
   }
   @media (min-width: 992px) {
-    padding: 1rem 1rem;
     .sidebar-container {
-      min-height: 100vh;
+      min-height: calc(100vh - 4.5rem);
       height: 100%;
 
       margin-left: -250px;

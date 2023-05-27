@@ -13,9 +13,9 @@ const Hero = () => {
             A small business is only as good as its tools.{' '}
           </h1>
           <div className='btn-container'>
-            <a href='#products' className='btn' type='btn'>
+            <Link to='/products' className='btn' type='btn'>
               Shop now
-            </a>
+            </Link>
             <Link to='/register' className='hero-btn' type='button'>
               Sign up
             </Link>

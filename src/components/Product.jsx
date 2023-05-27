@@ -19,7 +19,11 @@ const Product = ({ product = {} }) => {
           <h4>{name}</h4>
           <p className='price'>{formatPrice(price)}đ </p>
         </div>
-        <p>{description}</p>
+        <p>
+          {description.length > 200
+            ? `${description.substring(0, 200)}...`
+            : description}
+        </p>
         <div className='product-footer'>
           <Link to={`/products/${_id}`} className='icon-link'>
             <span>See more</span>

@@ -33,9 +33,6 @@ const FormRow = ({
   )
 }
 const Wrapper = styled.div`
-  display: grid;
-  gap: 0.5rem;
-
   .form-label {
     font-size: 1rem;
     text-transform: capitalize;
@@ -48,6 +45,7 @@ const Wrapper = styled.div`
     border: 1px solid var(--grey200);
     font-size: 1rem;
     background: var(--input-color);
+    margin-top: 0.5rem;
   }
   .form-row:focus {
     border: 1px solid var(--grey200);

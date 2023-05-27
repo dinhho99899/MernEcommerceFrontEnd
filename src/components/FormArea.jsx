@@ -28,21 +28,19 @@ const FormArea = ({
   )
 }
 const Wrapper = styled.div`
-  padding: 0.5rem 0;
   .form-label {
-    font-size: 1rem;
     text-transform: capitalize;
   }
   .form-row {
-    margin-top: 0.5rem;
     display: block;
     padding: 0.5rem 0.4rem;
     width: 100%;
     border-radius: 0.35rem;
     border: 1px solid var(--grey200);
-    min-height: 120px;
+    min-height: 110px;
     font-size: 1.2rem;
     background: var(--input-color);
+    margin-top: 0.5rem;
   }
   .form-row::placeholder {
     text-transform: capitalize;

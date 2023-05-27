@@ -2,10 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import customFetch, { localFetch } from '../../utils/axios'
 import { logoutUser } from '../users/userSlice'
+import { getUserProducts } from './productsSlice'
 const initialState = {
   isLoading: false,
   name: '',
   category: '',
+  allCategrory: ['a', 'b', 'c'],
   description: '',
   price: 0,
   image: '',
@@ -21,9 +23,9 @@ const initialState = {
 }
 export const createProduct = createAsyncThunk(
   'products/createProduct',
-  async (job, thunkAPI) => {
+  async (product, thunkAPI) => {
     try {
-      const response = await localFetch.post('/jobs', job, {
+      const response = await localFetch.post('/products', product, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -55,6 +57,25 @@ export const editProduct = createAsyncThunk(
     }
   }
 )
+export const deleteProduct = createAsyncThunk(
+  'products/deleteProduct',
+  async (productId, thunkAPI) => {
+    console.log(productId)
+    try {
+      const response = await localFetch.delete(`/products/${productId}`, {
+        headers: {
+          authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+        },
+      })
+      thunkAPI.dispatch(getUserProducts())
+
+      return response.data.msg
+    } catch (error) {
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
 const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -66,7 +87,7 @@ const productSlice = createSlice({
     clearInput: () => {
       return { ...initialState }
     },
-    setEditJob: (state, { payload }) => {
+    setEditProduct: (state, { payload }) => {
       return { ...state, isEditing: true, ...payload }
     },
   },
@@ -77,7 +98,7 @@ const productSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false
-        toast.success('Job Created')
+        toast.success('Product Created')
       })
       .addCase(createProduct.rejected, (state, { payload }) => {
         state.isLoading = false
@@ -88,13 +109,24 @@ const productSlice = createSlice({
       })
       .addCase(editProduct.fulfilled, (state) => {
         state.isLoading = false
-        toast.success('Job Modified...')
+        toast.success('Product Modified...')
       })
       .addCase(editProduct.rejected, (state, { payload }) => {
         state.isLoading = false
         toast.error(payload)
       })
+      .addCase(deleteProduct.pending, (state, { payload }) => {
+        state.isLoading = true
+      })
+      .addCase(deleteProduct.fulfilled, (state, { payload }) => {
+        state.isLoading = false
+        toast.success(payload)
+      })
+      .addCase(deleteProduct.rejected, (state, { payload }) => {
+        state.isLoading = false
+        toast.error(payload)
+      })
   },
 })
-export const { handleChange, clearInput, setEditJob } = productSlice.actions
+export const { handleChange, clearInput, setEditProduct } = productSlice.actions
 export default productSlice.reducer
