@@ -9,6 +9,7 @@ import {
   SinglePostPage,
   PolicyPage,
   Register,
+  AllProductsPage,
 } from './page'
 import { ShareLayout } from './page'
 import {
@@ -36,8 +37,9 @@ function App() {
           <Route path='/policy' element={<PolicyPage />}></Route>
           <Route path='/blog' element={<BlogPage />}></Route>
           <Route path='/blog/:postId' element={<SinglePostPage />}></Route>
+          <Route path='/products/' element={<AllProductsPage />}></Route>
           <Route
-            path='/product/:productId'
+            path='/products/:productId'
             element={<SingleProductPage />}
           ></Route>
           <Route path='*' element={<ErrorPage />}></Route>

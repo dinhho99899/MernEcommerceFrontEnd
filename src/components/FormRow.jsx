@@ -33,13 +33,14 @@ const FormRow = ({
   )
 }
 const Wrapper = styled.div`
-  padding: 0.5rem 0;
+  display: grid;
+  gap: 0.5rem;
+
   .form-label {
     font-size: 1rem;
     text-transform: capitalize;
   }
   .form-row {
-    margin-top: 0.5rem;
     display: block;
     padding: 0.6rem 0.6rem;
     width: 100%;

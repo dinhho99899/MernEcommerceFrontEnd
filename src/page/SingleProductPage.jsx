@@ -1,15 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Breadscums } from '../components'
 import { useParams } from 'react-router-dom'
-import { Gallery, Stars, Title, FormSelect, Comments } from '../components'
+import {
+  Gallery,
+  Stars,
+  Title,
+  FormSelect,
+  Comments,
+  AddToCart,
+  AmountBtns,
+} from '../components'
 import { Link } from 'react-router-dom'
 import { getSingleProductByAdmin } from '../features/products/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 const SingleProduct = () => {
   const dispatch = useDispatch()
   const { productId: id } = useParams()
-
+  const [amount, setAmount] = useState(1)
+  const list = [0.5, 1]
   const { product } = useSelector((store) => store.products)
   useEffect(() => {
     dispatch(getSingleProductByAdmin(id))
@@ -26,10 +35,29 @@ const SingleProduct = () => {
     price,
     name,
   } = product
+  const decreaseAmount = () => {
+    setAmount((oldAmount) => {
+      let newAmount = oldAmount - 1
+      if (newAmount < 1) {
+        newAmount = 1
+      }
+      return newAmount
+    })
+  }
+  const increaseAmount = () => {
+    setAmount((oldAmount) => {
+      let newAmount = oldAmount + 1
+      if (newAmount > inventory) {
+        newAmount = inventory
+      }
+      return newAmount
+    })
+  }
+
   return (
     <Wrapper>
       <div className=' section-center'>
-        <Breadscums title={name} />
+        <Breadscums center='products' title={name} />
         <div className='product-section'>
           <Gallery image={image} />
           <div className='product-info'>
@@ -37,20 +65,28 @@ const SingleProduct = () => {
             <div className='stars'>
               <Stars numbers={averageRating} />
             </div>
-            <p className='price'>{price}đ</p>
-            <p>Available: {inventory > 0 ? 'In stock' : 'Out of Stock'}</p>
-            <p>SKU: {productId}</p>
-            <p className='brand'>Brand: NTV Nuts</p>
+            <div>
+              <p className='price'>{price}đ</p>
+              <p>Available: {inventory > 0 ? 'In stock' : 'Out of Stock'}</p>
+              <p>SKU: {productId}</p>
+              <p className='brand'>Brand: NTV Nuts</p>
+            </div>
+
             <div className='underline'></div>
-            <FormSelect />
+            <FormSelect list={list} unit='kg' title='Khối lượng:' />
             {inventory === 0 ? (
               <Link to='/products' className='btn'>
                 More Products
               </Link>
             ) : (
-              <button type='button' className='btn'>
-                Add To Cart
-              </button>
+              <div className='add-to-cart'>
+                <AmountBtns
+                  amount={amount}
+                  decreaseAmount={decreaseAmount}
+                  increaseAmount={increaseAmount}
+                />
+                <AddToCart product={product} />
+              </div>
             )}
           </div>
           <div className='details'>
@@ -83,11 +119,9 @@ const Wrapper = styled.section`
     padding: 1rem 0;
     gap: 2rem;
   }
-  .btn {
-    margin-top: 1rem;
-  }
-  .stars {
-    padding: 0.8rem 0;
+  .product-info {
+    display: grid;
+    gap: 0.5rem;
   }
   .underline {
     width: 180px;
@@ -97,21 +131,6 @@ const Wrapper = styled.section`
     margin-top: 1rem;
   }
 
-  .quantity {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .quantity p {
-    margin: 0;
-  }
-  .select {
-    width: 100px;
-    background: var(--color5);
-    border: none;
-    padding: 0.375rem 0.5rem;
-  }
   .brand {
     text-transform: capitalize;
   }
@@ -127,6 +146,11 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     align-self: self-start;
     display: grid;
+    gap: 0.5rem;
+  }
+  .add-to-cart {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
   }
   .comments {

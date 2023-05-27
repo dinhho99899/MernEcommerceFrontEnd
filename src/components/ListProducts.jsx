@@ -25,12 +25,6 @@ const Wrapper = styled.div`
       width: 85%;
       margin: 0 auto;
     }
-    .list {
-      display: grid;
-      grid-template-columns: 400px 1fr;
-      gap: 1rem;
-      padding: 1rem 1rem;
-    }
   }
 `
 export default ListProducts

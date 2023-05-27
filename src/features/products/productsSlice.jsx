@@ -73,7 +73,7 @@ const productsSlice = createSlice({
         state.isLoading = true
       })
       .addCase(getSingleProductByAdmin.fulfilled, (state, { payload }) => {
-        state.isLoading = false
+        state.isLoading = true
         state.product = payload.product
       })
       .addCase(getUserProducts.fulfilled, (state, { payload }) => {

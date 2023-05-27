@@ -21,7 +21,7 @@ const Product = ({ product = {} }) => {
         </div>
         <p>{description}</p>
         <div className='product-footer'>
-          <Link to={`/product/${_id}`} className='icon-link'>
+          <Link to={`/products/${_id}`} className='icon-link'>
             <span>See more</span>
             <span className='icon'>
               <AiOutlineArrowRight />

@@ -2,26 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { BsFillGridFill } from 'react-icons/bs'
 import { FaListUl } from 'react-icons/fa'
-import FormSelect from './FormSelect'
+import { FormRowX, FormSelect } from '../components'
 import { useDispatch } from 'react-redux'
 import { toggleListView } from '../features/products/productsSlice'
 const ProductsHeader = ({ counts }) => {
   const dispatch = useDispatch()
   return (
-    <Wrapper className='header'>
-      <div className='title'>
-        <h4>Products</h4>
-      </div>
+    <Wrapper>
       <div className='btn-container'>
         <button className='category-btn active '>
-          <div className='inner-btn'>
-            <h4>All</h4>
-            <p className='category-text'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-            </p>
-          </div>
-        </button>
-        <button className='category-btn'>
           <div className='inner-btn'>
             <h4>All</h4>
             <p className='category-text'>
@@ -48,9 +37,11 @@ const ProductsHeader = ({ counts }) => {
       </div>
 
       <div className='sort-container'>
-        <p>
+        <FormRowX />
+        <p className='show'>
           Showing <span className='number'>{counts}</span> products
         </p>
+        <hr className='hr' />
         <div className='view-sort-container'>
           <div className='view'>
             <button
@@ -85,7 +76,9 @@ const Wrapper = styled.div`
     border-radius: 1rem;
     overflow: hidden;
   }
-
+  h4 {
+    color: var(--grey-text);
+  }
   .category-btn {
     width: 100%;
     text-align: left;
@@ -111,9 +104,17 @@ const Wrapper = styled.div`
     margin: 0;
   }
   .sort-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     justify-content: space-between;
     align-items: center;
+    gap: 0.7rem;
+  }
+  .hr {
+    display: none;
+  }
+  .show {
+    justify-self: left;
   }
   .transparent-btn {
     margin-right: 0.5rem;
@@ -139,6 +140,9 @@ const Wrapper = styled.div`
       display: block;
     }
     .view {
+      display: block;
+    }
+    .hr {
       display: block;
     }
   }

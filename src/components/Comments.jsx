@@ -12,9 +12,10 @@ import { toast } from 'react-toastify'
 const Comments = () => {
   const { productId: id } = useParams()
   const { user } = useSelector((store) => store.user)
-  const { reviews, count, title, comment, rating } = useSelector(
+  const { reviews, count, title, comment, rating, isLoading } = useSelector(
     (store) => store.reviews
   )
+  console.log(reviews)
   useEffect(() => {
     dispatch(getAllProductReviews(id))
   }, [id, reviews.length])
@@ -36,6 +37,7 @@ const Comments = () => {
     }
     dispatch(createReview({ product: id, rating, title, comment }))
   }
+  if (isLoading) return <h2>Loading </h2>
   return (
     <Wrapper>
       <div className='form'>

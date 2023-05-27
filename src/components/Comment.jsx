@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import xx from '../assets/images/blog1.png'
 import Stars from './Stars'
-const Comment = ({ _id: id, rating, title, comment, user: { name } }) => {
+const Comment = ({ _id: id, rating, title, comment, createdAt, user }) => {
+  console.log(user)
   return (
     <Wrapper>
       <div className='header'>
-        <img src={avatar || xx} alt='a' className='avatar' />
+        <img src={xx} alt='a' className='avatar' />
         <p>
           <span className='author'>{name} </span>
           <span>&#183; 15 Jan 2022</span>

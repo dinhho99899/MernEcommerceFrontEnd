@@ -22,19 +22,25 @@ export const links = [
   },
   {
     id: 2,
+    link: '/products',
+    text: 'Shop',
+    icon: <AiFillHome />,
+  },
+  {
+    id: 3,
     link: '/blog',
     text: 'Blog',
     icon: <MdChromeReaderMode />,
   },
 
   {
-    id: 3,
+    id: 4,
     link: '/contact',
     text: 'Liên hệ',
     icon: <MdContactPage />,
   },
   {
-    id: 4,
+    id: 5,
     link: '/policy',
     text: 'Chinh sach',
     icon: <MdDescription />,

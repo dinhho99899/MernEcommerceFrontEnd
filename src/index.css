@@ -93,6 +93,12 @@ svg {
   --hover-grey100: var(--grey800);
 }
 
+.load {
+  min-height: 30vh;
+  display: grid;
+  place-items: center;
+}
+
 .article-text {
   color: var(--grey-text);
 }
@@ -207,6 +213,8 @@ p {
   background: var(--primary500);
   text-transform: capitalize;
 }
+
+
 
 .title-btn {
   padding: 0.375rem 0.65rem;

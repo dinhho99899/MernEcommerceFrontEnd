@@ -8,7 +8,7 @@ import SinglePostPage from './SinglePostPage'
 import ContactPage from './ContactPage'
 import PolicyPage from './PolicyPage'
 import Register from './Register'
-
+import AllProductsPage from './AllProductsPage'
 export {
   HomePage,
   CheckoutPage,
@@ -20,4 +20,5 @@ export {
   ContactPage,
   PolicyPage,
   Register,
+  AllProductsPage,
 }

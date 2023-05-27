@@ -1,11 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-const FormSelect = ({}) => {
+const FormSelect = ({ title, list = [], unit }) => {
   return (
     <Wrapper>
-      <p>Sort: </p>
+      <p>{title}</p>
       <select className='select'>
-        <option value='s'>sssss</option>
+        {list.map((item) => {
+          return (
+            <option value={item}>
+              {item}
+              {unit}
+            </option>
+          )
+        })}
       </select>
     </Wrapper>
   )

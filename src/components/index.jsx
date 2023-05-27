@@ -41,10 +41,16 @@ import Comment from './Comment'
 import ProfileContainer from './ProfileContainer'
 import DashboardProduct from './DashboardProduct'
 import CompleteOrder from './CompleteOrder'
+import ProductsHeader from './ProductsHeader'
+import GridViewProducts from './GridViewProducts'
+import FormRowX from './FormRowX'
 export {
   Title,
+  GridViewProducts,
+  FormRowX,
   CompleteOrder,
   DashboardProduct,
+  ProductsHeader,
   CartItem,
   Comment,
   AddToCart,
