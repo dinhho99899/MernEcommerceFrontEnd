@@ -56,7 +56,7 @@ const SingleProduct = () => {
 
   return (
     <Wrapper>
-      <div className=' section-center'>
+      <div className='section section-center'>
         <Breadscums center='products' title={name} />
         <div className='product-section'>
           <Gallery image={image} />
@@ -85,7 +85,7 @@ const SingleProduct = () => {
                   decreaseAmount={decreaseAmount}
                   increaseAmount={increaseAmount}
                 />
-                <AddToCart product={product} />
+                <AddToCart product={product} amount={amount} />
               </div>
             )}
           </div>
@@ -109,7 +109,6 @@ const SingleProduct = () => {
   )
 }
 const Wrapper = styled.section`
-  padding: 2rem 0;
   min-height: calc(100vh - 18rem);
   place-items: center;
   gap: 1rem;

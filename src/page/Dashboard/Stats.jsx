@@ -15,7 +15,7 @@ const Stats = () => {
     dispatch(getStats())
   }, [])
   const { stats } = useSelector((store) => store.orders)
-  const { count } = stats[0]
+  let count = 20
   const color = count > 10 ? 'var(--primary500)' : 'black'
   const style = {
     color: color,
@@ -24,7 +24,7 @@ const Stats = () => {
     <Wrapper>
       <article className='info'>
         <div className='left'>
-          <h2 style={style}>{stats[0].count}</h2>
+          <h2 style={style}>{stats?.[0]?.count}</h2>
           <h4>Monthly Reviews</h4>
         </div>
         <span className='icon'>
@@ -33,7 +33,7 @@ const Stats = () => {
       </article>
       <article className='info'>
         <div className='left'>
-          <h2 className='color'>{stats[0].count}</h2>
+          <h2 className='color'>{stats?.[0]?.count}</h2>
           <h4>Monthly Orders</h4>
         </div>
         <span className='icon'>
@@ -42,7 +42,7 @@ const Stats = () => {
       </article>
       <article className='info'>
         <div className='left'>
-          <h2 className='color'>{stats[0].count}</h2>
+          <h2 className='color'>{stats?.[0]?.count}</h2>
           <h4>Monthly Revenue</h4>
         </div>
         <span className='icon'>
@@ -51,7 +51,7 @@ const Stats = () => {
       </article>
       <article className='info'>
         <div className='left'>
-          <h2 className='color'>{stats[0].count}</h2>
+          <h2 className='color'>{stats?.[0]?.count}</h2>
           <h4>Total Reviews</h4>
         </div>
         <span className='icon'>
@@ -60,7 +60,7 @@ const Stats = () => {
       </article>
       <article className='info'>
         <div className='left'>
-          <h2 className='color'>{stats[0].count}</h2>
+          <h2 className='color'>{stats?.[0]?.count}</h2>
           <h4>Total Orders</h4>
         </div>
         <span className='icon'>
@@ -69,7 +69,7 @@ const Stats = () => {
       </article>
       <article className='info'>
         <div className='left'>
-          <h2 className='color'>{stats[0].count}</h2>
+          <h2 className='color'>{stats?.[0]?.count}\hzh\jfdkzZFD0</h2>
           <h4>Total Revenue</h4>
         </div>
         <span className='icon'>

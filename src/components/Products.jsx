@@ -4,7 +4,8 @@ import { Title, GridViewProducts } from '../components'
 
 import { useSelector } from 'react-redux'
 const Products = () => {
-  const { all_products } = useSelector((store) => store.products)
+  const { featuredProducts } = useSelector((store) => store.products)
+  console.log(featuredProducts)
   return (
     <Wrapper id='products'>
       <div className='section-center section'>
@@ -19,7 +20,7 @@ const Products = () => {
         </div>
         <div className='products-section'>
           <div className='products-container'>
-            <GridViewProducts products={all_products} />
+            <GridViewProducts products={featuredProducts} />
           </div>
         </div>
       </div>

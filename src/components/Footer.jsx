@@ -112,6 +112,11 @@ const Wrapper = styled.section`
   .nuts {
     color: var(--primary500);
   }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   h4 {
     display: none;
     text-align: left;

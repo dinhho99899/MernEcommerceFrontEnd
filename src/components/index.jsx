@@ -3,7 +3,6 @@ import Hero from './Hero'
 import Breadscums from './Breadscums'
 import Cart from './Cart'
 import Contact from './Contact'
-import FeaturedProducts from './FeaturedProducts'
 import Filters from './Filters'
 import Footer from './Footer'
 import FormRow from './FormRow'
@@ -44,9 +43,11 @@ import CompleteOrder from './CompleteOrder'
 import ProductsHeader from './ProductsHeader'
 import GridViewProducts from './GridViewProducts'
 import FormRowX from './FormRowX'
+import Panigate from './Panigate'
 export {
   Title,
   GridViewProducts,
+  Panigate,
   FormRowX,
   CompleteOrder,
   DashboardProduct,
@@ -78,7 +79,6 @@ export {
   FormRow,
   Footer,
   Filters,
-  FeaturedProducts,
   ProfileContainer,
   Contact,
   Cart,

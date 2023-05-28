@@ -41,19 +41,22 @@ const CartItem = ({ id, amount, name, price, weight }) => {
 }
 const Wrapper = styled.article`
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 0.8rem;
+  grid-template-columns: 50px 1fr;
+  gap: 0.5rem;
   margin-bottom: 1rem;
-  padding: 0.3rem 0.8rem;
+  padding: 0.3rem 0.3rem;
+  padding-right: 1.5rem;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid;
-
+  .cart-item-img {
+    padding: 0.4rem 0;
+  }
   .remove-item-btn {
     position: absolute;
-    right: 0.2rem;
-    top: 0.1rem;
-    font-size: 1.4rem;
+    right: 0.1rem;
+    top: 0rem;
+    font-size: 1.2rem;
   }
 
   .info {
@@ -63,6 +66,8 @@ const Wrapper = styled.article`
   }
   p {
     text-align: left;
+    padding: 0;
+    margin: 0;
   }
   .color {
     color: var(--primary500);

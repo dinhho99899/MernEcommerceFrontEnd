@@ -1,45 +1,46 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { BsFillGridFill } from 'react-icons/bs'
 import { FaListUl } from 'react-icons/fa'
 import { FormRowX, FormSelect } from '../components'
-import { useDispatch } from 'react-redux'
-import { toggleListView } from '../features/products/productsSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  toggleListView,
+  filterProducts,
+} from '../features/products/productsSlice'
+import { getUniqueValues } from '../utils/helpers'
 const ProductsHeader = ({ counts }) => {
   const dispatch = useDispatch()
+  const { all_products } = useSelector((store) => store.products)
+  const categories = getUniqueValues(all_products, 'category')
+  const [isActive, setActive] = useState(0)
   return (
     <Wrapper>
       <div className='btn-container'>
-        <button className='category-btn active '>
-          <div className='inner-btn'>
-            <h4>All</h4>
-            <p className='category-text'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-            </p>
-          </div>
-        </button>
-        <button className='category-btn'>
-          <div className='inner-btn'>
-            <h4>All</h4>
-            <p className='category-text'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-            </p>
-          </div>
-        </button>
-        <button className='category-btn'>
-          <div className='inner-btn'>
-            <h4>All</h4>
-            <p className='category-text'>
-              Lorem ipsum dolor sit, amet consectetur adipisicing
-            </p>
-          </div>
-        </button>
+        {categories.map((item, index) => {
+          return (
+            <button
+              className={
+                isActive === index ? 'category-btn active-btn' : 'category-btn '
+              }
+              key={index}
+              name='category'
+              onClick={(e) => {
+                setActive(index)
+                const name = e.target.name
+                const value = e.target.textContent
+                dispatch(filterProducts({ name, value }))
+              }}
+            >
+              {item}
+            </button>
+          )
+        })}
       </div>
 
       <div className='sort-container'>
-        <FormRowX />
         <p className='show'>
-          Showing <span className='number'>{counts}</span> products
+          Total <span className='number'>{counts}</span> products
         </p>
         <hr className='hr' />
         <div className='view-sort-container'>
@@ -61,54 +62,53 @@ const ProductsHeader = ({ counts }) => {
               <BsFillGridFill />
             </button>
           </div>
-          <FormSelect />
         </div>
       </div>
     </Wrapper>
   )
 }
 const Wrapper = styled.div`
-  display: grid;
-  gap: 1rem;
   .btn-container {
+    justify-content: center;
     display: flex;
-    justify-content: space-around;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-  h4 {
-    color: var(--grey-text);
-  }
-  .category-btn {
-    width: 100%;
-    text-align: left;
-    padding: 1rem 1rem;
-    padding-left: 1rem;
-    padding-right: 0;
-    background: var(--white);
-    border: none;
-    cursor: pointer;
-  }
-  .active {
-    border-bottom: 3px solid var(--primary500);
-  }
-  .inner-btn {
-    border-right: 1px solid var(--primary400);
-  }
-  .inner-btn p {
-    color: var(--grey-text);
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
   }
 
-  p {
-    padding: 0;
-    margin: 0;
+  .category-btn {
+    background: var(--grey50);
+    color: black;
+    border-radius: 0.3rem;
+    font-weight: 500;
+    padding: 0.35rem 0.65rem;
+    letter-spacing: var(--spacing);
+    display: inline-block;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: var(--light-shadow);
+    text-transform: capitalize;
+  }
+  .category-btn:hover {
+    transform: scale(1.1);
+  }
+  .active-btn {
+    background: var(--primary500);
+    color: white;
   }
   .sort-container {
+    padding: 0.5rem 0;
     display: grid;
     grid-template-columns: auto 1fr auto;
     justify-content: space-between;
     align-items: center;
     gap: 0.7rem;
+  }
+  p {
+    margin: 0;
+    padding: 0;
   }
   .hr {
     display: none;
@@ -131,11 +131,13 @@ const Wrapper = styled.div`
     padding: 0 0.5rem;
     display: none;
   }
-  .category-text {
-    display: none;
-  }
 
   @media (min-width: 992px) {
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
     .category-text {
       display: block;
     }

@@ -1,9 +1,7 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import Product from './Product'
 import { useDispatch, useSelector } from 'react-redux'
-import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai'
-import { Loading } from '../components'
+import { Loading, Product } from '../components'
 const GridViewProducts = ({ products = [] }) => {
   const { isLoading } = useSelector((store) => store.products)
   if (isLoading)
@@ -12,12 +10,11 @@ const GridViewProducts = ({ products = [] }) => {
         <Loading />
       </div>
     )
-
   return (
     <Wrapper>
       <div className='products'>
         {products.map((product) => {
-          return <Product product={product} key={product.id} />
+          return <Product {...product} product={product} />
         })}
       </div>
     </Wrapper>
@@ -28,7 +25,7 @@ const Wrapper = styled.div`
     padding: 1rem 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.8rem;
+    gap: 1rem;
   }
 
   @media (min-width: 768px) {

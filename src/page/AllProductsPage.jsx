@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { getAllProductsByAdmin } from '../features/products/productsSlice'
 
@@ -11,15 +11,40 @@ import {
   GridViewProducts,
   FormRow,
   Loading,
+  Panigate,
 } from '../components'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { panigate } from '../utils/helpers'
 const AllProductsPage = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllProductsByAdmin())
   }, [])
-  const { all_products } = useSelector((store) => store.products)
+  const { filteredProducts } = useSelector((store) => store.products)
+  const pages = panigate(filteredProducts)
+  const [activeIndex, setIndex] = useState(0)
+  const filtered = pages[activeIndex]
+  const handlePage = (value) => {
+    if (value === 'previous') {
+      setIndex((old) => {
+        let newIndex = old - 1
+        if (newIndex < 0) {
+          newIndex = pages.length - 1
+        }
+        return newIndex
+      })
+      return
+    }
+    if (value === 'next') {
+      setIndex((old) => {
+        let newIndex = old + 1
+        if (newIndex > pages.length - 1) {
+          newIndex = 0
+        }
+        return newIndex
+      })
+    }
+  }
   return (
     <Wrapper>
       <div className='section-center95'>
@@ -29,24 +54,14 @@ const AllProductsPage = () => {
             <Title title='All Products' />
           </div>
           <div className='products-container'>
-            <div className='filters'>
-              <FormRow name='search' />
-              <div className='product-name'>
-                <label>Name</label>
-                <p> Hanh nhan</p>
-                <p>Bi xanh</p>
-                <p>Hat dieu</p>
-                <p>Maccadamia</p>
-                <p>Yen mach</p>
-              </div>
-
-              <input type='range' />
-              <button className='btn'>Clear Filters</button>
-            </div>
-            <div>
-              <ProductsHeader />
-              <GridViewProducts products={all_products} />
-            </div>
+            <ProductsHeader counts={filteredProducts.length} />
+            <GridViewProducts products={filtered} />
+            <Panigate
+              pages={pages}
+              handlePage={handlePage}
+              activeIndex={activeIndex}
+              setIndex={setIndex}
+            />
           </div>
         </div>
       </div>
@@ -57,16 +72,11 @@ const Wrapper = styled.section`
   padding: 2rem 0;
   min-height: calc(100vh - 4.5rem);
   background: var(--background-grey1);
-  .products-section {
-    padding: 1rem 0;
-  }
   .center {
     text-align: center;
     padding-bottom: 1rem;
   }
   .products-container {
-    display: grid;
-    gap: 1.5rem;
   }
   .section-center95 {
     width: 90vw;
@@ -88,38 +98,7 @@ const Wrapper = styled.section`
   .btn {
     justify-self: left;
   }
-  .btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .previous {
-    border-top-left-radius: 0.4rem;
-    border-bottom-left-radius: 0.4rem;
-    padding: 0 0.8rem;
-    padding-top: 0.65rem;
-    padding-bottom: 0.35rem;
-    background: var(--white);
-    cursor: pointer;
-  }
-  .next {
-    border-top-right-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
-    padding: 0 0.8rem;
-    padding-top: 0.65rem;
-    padding-bottom: 0.35rem;
-    background: var(--white);
-    cursor: pointer;
-  }
-  .panigation-btn {
-    padding: 0.5rem 1.3rem;
-    background: var(--white);
-    cursor: pointer;
-  }
 
-  .active {
-    background: var(--grey200);
-  }
   @media (min-width: 992px) {
     .products-container {
       grid-template-columns: 200px 1fr;

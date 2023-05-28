@@ -6,6 +6,8 @@ const initialState = {
   isLoading: false,
   isListView: true,
   all_products: [],
+  featuredProducts: [],
+  filteredProducts: [],
   counts: 0,
   product: {},
 }
@@ -29,7 +31,7 @@ export const getAllProductsByAdmin = createAsyncThunk(
   'products/allProductsByAdmin',
   async (_, thunkAPI) => {
     try {
-      const response = await customFetch.get('/admin')
+      const response = await localFetch.get('/admin')
       return response.data
     } catch (error) {
       console.log(error)
@@ -58,6 +60,16 @@ const productsSlice = createSlice({
     toggleListView: (state) => {
       state.isListView = !state.isListView
     },
+    filterProducts: (state, { payload }) => {
+      const { name, value } = payload
+      console.log(value)
+      if (value !== 'All') {
+        let filters = [...state.all_products]
+        state.filteredProducts = filters.filter((item) => item[name] === value)
+      } else {
+        state.filteredProducts = state.all_products
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,6 +80,11 @@ const productsSlice = createSlice({
         state.isLoading = false
         state.all_products = payload.products
         state.counts = payload.count
+        const featuredProducts = payload.products.filter(
+          (item) => item.featured === true
+        )
+        state.featuredProducts = featuredProducts
+        state.filteredProducts = payload.products
       })
       .addCase(getSingleProductByAdmin.pending, (state) => {
         state.isLoading = true
@@ -82,5 +99,6 @@ const productsSlice = createSlice({
       })
   },
 })
-export const { toggleSidebar, toggleListView } = productsSlice.actions
+export const { toggleSidebar, toggleListView, filterProducts } =
+  productsSlice.actions
 export default productsSlice.reducer
