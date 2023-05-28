@@ -78,7 +78,7 @@ export const getStats = createAsyncThunk(
   'orders/getStats',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/orders/getStats', {
+      const response = await customFetch.get('/orders/getStats', {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },

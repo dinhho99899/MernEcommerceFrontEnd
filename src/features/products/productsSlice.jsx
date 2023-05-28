@@ -31,7 +31,7 @@ export const getAllProductsByAdmin = createAsyncThunk(
   'products/allProductsByAdmin',
   async (_, thunkAPI) => {
     try {
-      const response = await localFetch.get('/admin')
+      const response = await customFetch.get('/admin')
       return response.data
     } catch (error) {
       console.log(error)

@@ -25,7 +25,7 @@ export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, thunkAPI) => {
     try {
-      const response = await localFetch.post('/products', product, {
+      const response = await customFetch.post('/products', product, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
@@ -62,7 +62,7 @@ export const deleteProduct = createAsyncThunk(
   async (productId, thunkAPI) => {
     console.log(productId)
     try {
-      const response = await localFetch.delete(`/products/${productId}`, {
+      const response = await customFetch.delete(`/products/${productId}`, {
         headers: {
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
