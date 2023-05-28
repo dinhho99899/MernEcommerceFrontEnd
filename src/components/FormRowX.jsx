@@ -36,9 +36,6 @@ const FormRowX = ({
   )
 }
 const Wrapper = styled.div`
-  @media (min-width: 992px) {
-    display: none;
-  }
   .absolute {
     position: relative;
   }

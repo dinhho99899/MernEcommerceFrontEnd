@@ -1,6 +1,6 @@
 export const getUniqueValues = (items, value) => {
   let unique = items.map((item) => item[value])
-  return ['All', ...new Set(unique)]
+  return ['all', ...new Set(unique)]
 }
 
 export const panigate = (items) => {

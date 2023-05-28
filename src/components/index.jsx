@@ -40,16 +40,22 @@ import Comment from './Comment'
 import ProfileContainer from './ProfileContainer'
 import DashboardProduct from './DashboardProduct'
 import CompleteOrder from './CompleteOrder'
-import ProductsHeader from './ProductsHeader'
+import ProductsHeader from './FiltersContainer'
 import GridViewProducts from './GridViewProducts'
-import FormRowX from './FormRowX'
 import Panigate from './Panigate'
+import FiltersContainer from './FiltersContainer'
+import FormSelectX from './FormSelectX'
+import FormRowX from './FormRowX'
+import AllProductsContainer from './AllProductsContainer'
 export {
   Title,
-  GridViewProducts,
-  Panigate,
   FormRowX,
+  AllProductsContainer,
+  GridViewProducts,
+  FiltersContainer,
+  Panigate,
   CompleteOrder,
+  FormSelectX,
   DashboardProduct,
   ProductsHeader,
   CartItem,

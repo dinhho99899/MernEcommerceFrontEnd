@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Loading, Product } from '../components'
 const GridViewProducts = ({ products = [] }) => {
   const { isLoading } = useSelector((store) => store.products)
@@ -14,7 +13,7 @@ const GridViewProducts = ({ products = [] }) => {
     <Wrapper>
       <div className='products'>
         {products.map((product) => {
-          return <Product {...product} product={product} />
+          return <Product {...product} product={product} key={product._id} />
         })}
       </div>
     </Wrapper>

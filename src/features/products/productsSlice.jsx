@@ -10,6 +10,14 @@ const initialState = {
   filteredProducts: [],
   counts: 0,
   product: {},
+  sort: 'name a-z',
+  sortTypes: ['name a-z', 'name z-a', 'price hightest', 'price lowest'],
+  filters: {
+    category: 'all',
+    search: '',
+    type: 'all',
+    allTypes: ['all', 'Hạt bí', 'Hạt điều', 'Hạnh nhân'],
+  },
 }
 export const getUserProducts = createAsyncThunk(
   'products/getUserProducts',
@@ -20,7 +28,6 @@ export const getUserProducts = createAsyncThunk(
           authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
         },
       })
-      console.log(response)
       return response.data.products
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -60,15 +67,55 @@ const productsSlice = createSlice({
     toggleListView: (state) => {
       state.isListView = !state.isListView
     },
-    filterProducts: (state, { payload }) => {
+    handleSort: (state, { payload }) => {
       const { name, value } = payload
-      console.log(value)
-      if (value !== 'All') {
-        let filters = [...state.all_products]
-        state.filteredProducts = filters.filter((item) => item[name] === value)
-      } else {
-        state.filteredProducts = state.all_products
+      state[name] = value
+    },
+    handleFilters: (state, { payload }) => {
+      const { name, value } = payload
+      state.filters[name] = value
+    },
+    sortProducts: (state) => {
+      let filtersa = [...state.all_products]
+      if (state.sort === 'price hightest') {
+        filtersa = filtersa.sort((a, b) => b.price - a.price)
       }
+      if (state.sort === 'price lowest') {
+        filtersa = filtersa.sort((a, b) => a.price - b.price)
+      }
+      if (state.sort === 'name a-z') {
+        filtersa = filtersa.sort((a, b) => a.name.localeCompare(b.name))
+      }
+      if (state.sort === 'name z-a') {
+        filtersa = filtersa.sort((a, b) => b.name.localeCompare(a.name))
+      }
+      state.filteredProducts = filtersa
+    },
+    filtersProducts: (state) => {
+      const { category, search, type } = state.filters
+      let filters = [...state.all_products]
+      if (search) {
+        filters = state.all_products.filter((item) =>
+          item.name.toLowerCase().startsWith(search)
+        )
+      }
+      if (category !== 'all') {
+        filters = filters.filter((item) => {
+          return item.category === category
+        })
+      }
+      if (type !== 'all') {
+        filters = filters.filter((item) => {
+          return item.name === type
+        })
+      }
+      state.filteredProducts = filters
+    },
+    clearFilters: (state) => {
+      state.sort = 'name a-z'
+      state.filters.type = 'all'
+      state.filters.search = ''
+      state.filters.category = 'all'
     },
   },
   extraReducers: (builder) => {
@@ -99,6 +146,13 @@ const productsSlice = createSlice({
       })
   },
 })
-export const { toggleSidebar, toggleListView, filterProducts } =
-  productsSlice.actions
+export const {
+  toggleSidebar,
+  toggleListView,
+  handleSort,
+  handleFilters,
+  filtersProducts,
+  sortProducts,
+  clearFilters,
+} = productsSlice.actions
 export default productsSlice.reducer
