@@ -19,13 +19,12 @@ const FiltersContainer = ({ counts }) => {
   const dispatch = useDispatch()
   const { all_products } = useSelector((store) => store.products)
   const categories = getUniqueValues(all_products, 'category')
-  const [isActive, setActive] = useState(0)
 
   const {
     sort,
     sortTypes,
     filters,
-    filters: { search, allTypes, type },
+    filters: { search, allTypes, type, category },
   } = useSelector((store) => store.products)
   useEffect(() => {
     dispatch(sortProducts())
@@ -51,15 +50,13 @@ const FiltersContainer = ({ counts }) => {
           return (
             <button
               className={
-                isActive === index ? 'category-btn active-btn' : 'category-btn '
+                category === item ? 'category-btn active-btn' : 'category-btn '
               }
               key={index}
               name='category'
               onClick={(e) => {
-                setActive(index)
                 const name = e.target.name
                 const value = e.target.textContent
-                console.log(name, value)
                 dispatch(handleFilters({ name, value }))
               }}
             >
