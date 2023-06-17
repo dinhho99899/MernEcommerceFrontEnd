@@ -113,6 +113,7 @@ const Wrapper = styled.div`
   width: 100%;
   top: 0;
   z-index: 99;
+  display: none;
   .nav-center {
     max-width: 1100px;
     margin: 0 auto;

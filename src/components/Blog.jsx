@@ -2,15 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import Post from './Post'
+import { Link } from 'react-router-dom'
 const Blog = ({ hidebtn }) => {
   return (
     <Wrapper>
       <div className='section section-center'>
         <div className='blog-title'>
           <Title title='Blog' />
-          <button className={hidebtn ? hidebtn : 'btn'} type='button'>
+          <Link to='/blog' className={hidebtn ? hidebtn : 'btn'} type='button'>
             View all posts
-          </button>
+          </Link>
         </div>
         <h3 className='padding'>Blog posts</h3>
         <p>

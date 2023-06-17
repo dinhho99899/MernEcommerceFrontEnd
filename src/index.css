@@ -369,6 +369,4 @@ p {
   }
 }
 
-.Toastify__toast {
-  text-transform: capitalize;
-}
+.Toastify__toast {}

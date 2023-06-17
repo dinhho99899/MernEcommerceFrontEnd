@@ -11,6 +11,7 @@ import {
   Products,
   Testimonials,
   Blog,
+  AddInfo,
 } from '../components'
 
 const HomePage = () => {
@@ -20,6 +21,7 @@ const HomePage = () => {
   }, [])
   return (
     <Wrapper>
+      <AddInfo />
       <Hero />
       <Services />
       <AboutUs />

@@ -8,7 +8,7 @@ const Services = () => {
     <Wrapper>
       <div className='services-section section section-center'>
         <div className='service-header'>
-          <Title title='Services' />
+          <Title title='Our Services' />
           <h3>Gain more insight into how people use your</h3>
           <p>
             With our integrated CRM, project management, collaboration and

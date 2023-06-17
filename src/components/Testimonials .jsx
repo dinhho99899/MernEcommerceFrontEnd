@@ -1,9 +1,27 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Title from './Title'
-import hero from '../assets/images/hero.png'
+
 import { ImQuotesLeft, ImQuotesRight } from 'react-icons/im'
+import { quotes } from '../utils/links'
 const Testimonials = () => {
+  const [activeIndex, setIndex] = useState(2)
+  const activeQuote = quotes[activeIndex]
+  const { id, quote, avatar, name, position } = activeQuote
+  useEffect(() => {
+    const setId = setInterval(() => {
+      setIndex((old) => {
+        let newIndex = old + 1
+        if (newIndex >= quotes.length) {
+          newIndex = 0
+        }
+        return newIndex
+      })
+    }, 3000)
+    return () => {
+      clearInterval(setId)
+    }
+  }, [])
   return (
     <Wrapper>
       <div className='top'></div>
@@ -14,8 +32,7 @@ const Testimonials = () => {
           </div>
           <div className='quotes'>
             <h4 className='content'>
-              The best solution for anyone who wants to work a flexible schedule
-              but still earn a full-time income.
+              {quote}
               <span className='quote1'>
                 <ImQuotesLeft />
               </span>
@@ -23,23 +40,32 @@ const Testimonials = () => {
                 <ImQuotesRight />
               </span>
             </h4>
-            <img src={hero} alt='l' className='avatar-img'></img>
-            <h4>Dinh Ho</h4>
-            <p>Designer</p>
+            <img src={avatar} alt='l' className='avatar-img'></img>
+            <h4>{name}</h4>
+            <p>{position}</p>
             <div className='btn-container'>
-              <div className='next-btn '></div>
-              <div className='next-btn active'></div>
-              <div className='next-btn'></div>
+              {quotes.map((item, index) => {
+                return (
+                  <div
+                    className={
+                      index === activeIndex ? 'next-btn active' : 'next-btn'
+                    }
+                    key={index}
+                    onClick={() => {
+                      setIndex(index)
+                    }}
+                  ></div>
+                )
+              })}
             </div>
           </div>
         </div>
       </div>
-      <div className='bottom'></div>
     </Wrapper>
   )
 }
 const Wrapper = styled.section`
-  padding: 1rem 0;
+  padding: 2rem 0;
 
   p {
     text-align: center;
@@ -84,6 +110,7 @@ const Wrapper = styled.section`
   .btn-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 0.6rem;
     gap: 0.3rem;
   }
@@ -93,6 +120,8 @@ const Wrapper = styled.section`
     height: 10px;
     border-radius: 50%;
     background: var(--primary500);
+    transition: all 0.3s ease-out;
+    cursor: pointer;
   }
   .active {
     width: 25px;

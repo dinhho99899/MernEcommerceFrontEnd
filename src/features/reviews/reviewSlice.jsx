@@ -51,7 +51,7 @@ const reviewsSlice = createSlice({
       state[name] = value
     },
     clearValue: (state) => {
-      state.comment = ''
+      state.title = ''
       state.rating = 0
       state.comment = ''
     },

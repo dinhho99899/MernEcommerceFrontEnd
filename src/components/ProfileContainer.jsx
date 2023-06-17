@@ -120,7 +120,9 @@ const Wrapper = styled.div`
     display: grid;
     row-gap: 0.5rem;
   }
-
+  .btn {
+    margin-top: 0.5rem;
+  }
   @media (min-width: 992px) {
     grid-template-columns: 300px 1fr;
     align-items: center;

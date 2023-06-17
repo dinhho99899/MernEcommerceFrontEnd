@@ -28,7 +28,7 @@ const ShareLayout = () => {
 }
 const Wrapper = styled.main`
   .main-container {
-    margin-top: 4.5rem;
+    /* margin-top: 4.5rem; */
   }
 `
 export default ShareLayout

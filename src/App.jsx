@@ -27,7 +27,7 @@ import 'react-toastify/dist/ReactToastify.css'
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer position='bottom-right' autoClose={500} />
       <Routes>
         <Route path='/' element={<ShareLayout />}>
           <Route index element={<HomePage />}></Route>

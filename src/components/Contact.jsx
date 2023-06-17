@@ -4,6 +4,7 @@ import Title from './Title'
 import { HiOutlineMail } from 'react-icons/hi'
 import FormRow from './FormRow'
 import FormArea from './FormArea'
+import { Link } from 'react-router-dom'
 const Contact = () => {
   return (
     <Wrapper>
@@ -19,8 +20,12 @@ const Contact = () => {
             </p>
           </div>
           <div className='btn-container'>
-            <button className='btn'>Continue Shopping</button>
-            <button className='hero-btn'>About us</button>
+            <Link to='/products' className='btn'>
+              Continue Shopping
+            </Link>
+            <Link to='/about' className='hero-btn'>
+              About us
+            </Link>
           </div>
           <div className='contact-info'>
             <article className='info'>
@@ -77,9 +82,7 @@ const Wrapper = styled.section`
   .contact-header h3 {
     padding: 0.5rem 0;
   }
-  .btn-container button {
-    margin-right: 1rem;
-  }
+
   .contact-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -91,6 +94,10 @@ const Wrapper = styled.section`
   }
   .info h4 {
     margin-top: 0.6rem;
+  }
+  .btn-container {
+    display: flex;
+    gap: 0.5rem;
   }
   .contact-icon {
     font-size: 1.5rem;

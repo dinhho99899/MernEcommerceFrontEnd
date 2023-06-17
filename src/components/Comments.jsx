@@ -80,6 +80,7 @@ const Comments = () => {
 const Wrapper = styled.div`
   .submit-container {
     text-align: right;
+    margin-top: 0.5rem;
   }
   hr {
     margin: 1rem 0;
