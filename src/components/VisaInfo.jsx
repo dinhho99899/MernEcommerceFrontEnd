@@ -427,7 +427,13 @@ export const page17 = [
   {
     title: 'Number',
     type: 'Copy',
-    value: 'xxxxxxx',
+    value: '4225651095003400541xxxx',
+    icon: <AiFillCopy />,
+  },
+  {
+    title: 'Name',
+    type: 'Copy',
+    value: 'HO VAN DINH',
     icon: <AiFillCopy />,
   },
   {
@@ -437,7 +443,7 @@ export const page17 = [
     icon: <AiFillCopy />,
   },
   {
-    title: 'N2',
+    title: 'CVV2',
     type: 'Copy',
     value: '739',
     icon: <AiFillCopy />,
