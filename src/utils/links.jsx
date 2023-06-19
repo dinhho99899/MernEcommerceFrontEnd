@@ -12,10 +12,10 @@ import {
   MdContactPage,
   MdDescription,
 } from 'react-icons/md'
-import blog from '../assets/images/photo5.png'
+import blog from '../assets/images/Photo5.png'
 import blog5 from '../assets/images/hero.png'
 import blog6 from '../assets/images/blog1.png'
-import blog7 from '../assets/images/photo7.png'
+import blog7 from '../assets/images/Photo7.png'
 export const links = [
   {
     id: 1,
