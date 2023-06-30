@@ -38,7 +38,8 @@ export const page2 = [
   {
     title: 'Prososed arrival date',
     type: 'Select',
-    value: 'Select',
+    value: '15/10/2023',
+    icon: <AiFillCopy />,
   },
   {
     title: 'Goverment support(?)',
@@ -103,7 +104,7 @@ export const page3 = [
   {
     title: 'Place of issue',
     type: 'Copy',
-    value: 'Immigration Department',
+    value: 'Vietnam Immigration Department',
     icon: <AiFillCopy />,
   },
   {
@@ -315,7 +316,7 @@ export const page9 = [
     icon: <AiFillCopy />,
   },
   {
-    title: 'Institution Name',
+    title: 'Date to',
     type: 'Copy',
     value: '20/11/2016',
     icon: <AiFillCopy />,
@@ -369,7 +370,7 @@ export const page11 = [
   {
     title: 'Test Number',
     type: '',
-    value: 'x',
+    value: '451624001',
     icon: <AiFillCopy />,
   },
   {
@@ -427,7 +428,7 @@ export const page17 = [
   {
     title: 'Number',
     type: 'Copy',
-    value: '4225651095003400541xxxx',
+    value: '4221098003400941',
     icon: <AiFillCopy />,
   },
   {
@@ -455,13 +456,14 @@ export const page18 = [
     value: 'PTE',
   },
   {
-    title: 'Travel Document',
-    value: 'Passport',
-  },
-  {
     title: 'Qualitications',
     value: 'Bachelor Degree',
   },
+  {
+    title: 'Travel Document',
+    value: 'Passport',
+  },
+
   {
     title: 'Photograph - Passport',
     value: 'Portrait',
