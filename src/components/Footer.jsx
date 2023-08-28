@@ -13,12 +13,12 @@ const Footer = () => {
             <Logo extra='white-text' />
           </div>
           <p className='text'>
-            Launch your own Software As A Service Application with Flex
-            Solutions.
+            Sức khỏe tốt và trí tuệ minh mẫn là hai điều hạnh phúc nhất của cuộc
+            đời.
           </p>
         </div>
         <div className='products'>
-          <h4>Products</h4>
+          <h4>Danh sách trang</h4>
           <div className='nav-links'>
             {links.map((item) => {
               const { id, text, link, icon } = item
@@ -37,7 +37,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='links'>
-          <h4>Remaining</h4>
+          <h4>Liên kết</h4>
           <div className='nav-links'>
             {links.map((item) => {
               const { id, text, link, icon } = item
@@ -56,11 +56,11 @@ const Footer = () => {
           </div>
         </div>
         <div className='newsletter'>
-          <h4>Newsletter</h4>
+          <h4 className='mail'>Đăng kí nhận mail khuyến mãi</h4>
           <div className='newsletter-form'>
             <input type='text' className='form-row'></input>
             <button className='btn' type='button'>
-              Subcribe
+              Đăng kí
             </button>
           </div>
         </div>
@@ -82,6 +82,9 @@ const Wrapper = styled.section`
   .footer {
     display: grid;
     gap: 0.5rem;
+  }
+  h4 {
+    font-size: 1rem;
   }
   .logo {
     display: flex;

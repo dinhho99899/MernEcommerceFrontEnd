@@ -45,7 +45,7 @@ export const links = [
   {
     id: 5,
     link: '/policy',
-    text: 'Chinh sach',
+    text: 'Chính sách',
     icon: <MdDescription />,
   },
 ]

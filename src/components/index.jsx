@@ -47,10 +47,8 @@ import FiltersContainer from './FiltersContainer'
 import FormSelectX from './FormSelectX'
 import FormRowX from './FormRowX'
 import AllProductsContainer from './AllProductsContainer'
-import AddInfo from './AddInfo'
 export {
   Title,
-  AddInfo,
   FormRowX,
   AllProductsContainer,
   GridViewProducts,

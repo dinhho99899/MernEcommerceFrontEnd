@@ -12,3 +12,4 @@ export const panigate = (items) => {
   })
   return newItems
 }
+const checkFuc = () => {}

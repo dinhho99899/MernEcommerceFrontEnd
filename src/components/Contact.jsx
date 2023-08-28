@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import { HiOutlineMail } from 'react-icons/hi'
+import { AiFillFacebook, AiFillPhone, AiOutlineMail } from 'react-icons/ai'
+import { SiZalo } from 'react-icons/si'
 import FormRow from './FormRow'
 import FormArea from './FormArea'
 import { Link } from 'react-router-dom'
@@ -9,60 +11,60 @@ const Contact = () => {
   return (
     <Wrapper>
       <div className=' section section-center contact-section'>
-        <Title title='Contact' />
+        <Title title='Liên hệ' />
         <div className='contact-header'>
           <div>
-            <h3>Lets stay connected</h3>
+            <h3>Hãy giữ liên hệ với nhau</h3>
             <p>
-              It's never been easier to get in touch with Flex. Call us, use our
-              live chat widget or email and we'll get back to you as soon as
-              possible!
+              Không thể dễ dàng hơn để liên kết với NTVNuts bây giờ. Gọi ngay
+              cho chúng tôi. Bạn có thể sử dụng live chat hoặc email. Chúng tôi
+              sẽ liên hệ cho bạn sớm nhất có thể!
             </p>
           </div>
           <div className='btn-container'>
             <Link to='/products' className='btn'>
-              Continue Shopping
+              Shopping
             </Link>
             <Link to='/about' className='hero-btn'>
-              About us
+              Về chúng tôi
             </Link>
           </div>
           <div className='contact-info'>
             <article className='info'>
               <span className='contact-icon'>
-                <HiOutlineMail />
+                <AiOutlineMail />
               </span>
               <h4>Email</h4>
-              <p>contact@mail.com</p>
+              <p>quahatkhontv@gmail.com</p>
             </article>
             <article className='info'>
               <span className='contact-icon'>
-                <HiOutlineMail />
+                <AiFillPhone />
               </span>
-              <h4>Email</h4>
-              <p>contact@mail.com</p>
+              <h4>Phone</h4>
+              <p>0764024462</p>
+            </article>
+            <article className='info'>
+              <span className='contact-icon zalo'>
+                <SiZalo />
+              </span>
+              <h4>Zalo</h4>
+              <p>0837139604</p>
             </article>
             <article className='info'>
               <span className='contact-icon'>
-                <HiOutlineMail />
+                <AiFillFacebook />
               </span>
-              <h4>Email</h4>
-              <p>contact@mail.com</p>
-            </article>
-            <article className='info'>
-              <span className='contact-icon'>
-                <HiOutlineMail />
-              </span>
-              <h4>Email</h4>
-              <p>contact@mail.com</p>
+              <h4>Facebook</h4>
+              <Link>https://www.facebook.com/ntvnuts</Link>
             </article>
           </div>
           <div className='form-container'>
             <form className='form'>
-              <FormRow name='name' />
-              <FormArea name='Message' />
+              <FormRow name='Tên liên hệ' />
+              <FormArea name='Tin nhắn' />
               <button className='btn submit-btn' type='submit'>
-                Submit
+                Gửi
               </button>
             </form>
           </div>
@@ -88,6 +90,9 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-top: 2rem;
+  }
+  .contact-icon {
+    color: white;
   }
   .info {
     text-align: center;
